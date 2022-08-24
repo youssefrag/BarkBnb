@@ -20,3 +20,20 @@ class Dog(models.Model):
         return self.name
 
 
+class Sitting(models.Model):
+    dog = models.ForeignKey(
+        Dog, on_delete=CASCADE)
+    CITY_CHOICES = (
+        ('MTL', 'Montreal, Quebec'),
+        ('TOR', 'Toronto, Ontario'),
+        ('VAN', 'Vancouver, British Columbia'),
+        ('CAL', 'Calgary, Alberta'),
+        ('OTT', 'Ottawa, Ontario'),
+    )
+    sitter = models.ForeignKey(
+        Profile, null=True, blank=True, on_delete=CASCADE)
+    location = models.CharField(max_length=200, choices=CITY_CHOICES)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    price = models.IntegerField()
+
