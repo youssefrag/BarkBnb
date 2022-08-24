@@ -7,7 +7,6 @@ from django.dispatch import receiver
 @receiver(post_save, sender=User)
 def createProfile(sender, instance, created, **kwargs):
     if created:
-        print('PROFILE IS BEING CREATED')
         user = instance
         profile = Profile.objects.create(
             user=user,
