@@ -8,7 +8,7 @@ def getRoutes(request):
     routes = [
         {
             'Endpoint': '/sittings/',
-            'method': 'POST',
+            'method': 'GET',
             'body': None,
             'description':' Get all available sittings'
         }
