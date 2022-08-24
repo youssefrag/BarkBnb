@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import {Button, TextField, Typography } from '@mui/material';
+import {Button, TextField, Typography, Alert } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -17,9 +17,12 @@ export const RegistrationPage = () => {
 
     const [user, setUser] = useState({
         name: '',
+        username: '',
         email: '',
         password: '',
     })
+
+    const [alert, setAlert] = useState('')
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -30,7 +33,7 @@ export const RegistrationPage = () => {
     const handleSubmit = () => {
         const { name, email, password } = user
         if (!name || !email || !password) {
-           alert('Empty Values!')
+            alert('Empty Values!')
             return
         }
         fetch('http://127.0.0.1:8000/api/users/create', {
@@ -40,22 +43,16 @@ export const RegistrationPage = () => {
             },
             body: JSON.stringify(user)
         })
-        .then((result) => { 
-            console.log(result.data)
-            // navigate("/login")
-        })
-        .catch((error) => {
-            console.log(error)
+        .then(() => {
+            setAlert('success')
         })
   }
 
   return (
     <div className={classes.root}>
-        <div 
-        >
+        <div>
             <Typography
                 variant='h3'
-                // className={classes.title}
             >
                 Registration Page
             </Typography>
@@ -71,6 +68,16 @@ export const RegistrationPage = () => {
                 color="secondary"
                 required
                 value={user.name}
+                onChange={handleChange}
+                className={classes.field}
+            />
+            <TextField
+                type="text"
+                label="Username"
+                name='username'
+                color="secondary"
+                required
+                value={user.username}
                 onChange={handleChange}
                 className={classes.field}
             />
