@@ -5,16 +5,37 @@ import {Button, TextField, Typography } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-
+    root: {
+        marginTop:'100px'
+    }
 })
 
 export const RegistrationPage = () => {
 
   const classes = useStyles()
 
+  const [user, setUser] = useState({
+      name: '',
+      email: '',
+      password: '',
+  })
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setUser(prev => ({...user, [name]: value}))
+  }
+
+  const handleSubmit = () => {
+      const { name, email, password } = user
+      if (!name || !email || !password) {
+          alert('Empty Values!')
+          return
+      }
+  }
+
   return (
-    <div 
-    >
+    <div className={classes.root}>
         <div 
         >
             <Typography
@@ -34,12 +55,9 @@ export const RegistrationPage = () => {
                 name='name'
                 color="secondary"
                 required
-                // value={user.name}
-                // onChange={handleChange}
-                // className={classes.field}
-                // sx={{
-                //     marginBottom: '20px'
-                // }}
+                value={user.name}
+                onChange={handleChange}
+                className={classes.field}
             />
             <TextField
                 className={classes.input}
@@ -48,12 +66,8 @@ export const RegistrationPage = () => {
                 name='email'
                 color="secondary"
                 required
-                // value={user.email}
-                // onChange={handleChange}
-                // className={classes.field}
-                // sx={{
-                //     marginBottom: '20px'
-                // }}
+                value={user.email}
+                onChange={handleChange}
             />
             <TextField
                 type="password"
@@ -61,18 +75,14 @@ export const RegistrationPage = () => {
                 name='password'
                 color="secondary"
                 required
-                // value={user.password}
-                // onChange={handleChange}
-                // sx={{
-                //     marginBottom: '20px'
-                // }}
+                value={user.password}
+                onChange={handleChange}
             />
-            <div
-            >
+            <div>
                 <Button
                     variant='contained' 
                     size='large'
-                    // onClick={handleSubmit}
+                    onClick={handleSubmit}
                 >
                     Register!
                 </Button>
