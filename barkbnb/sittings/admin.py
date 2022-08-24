@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Dog, Sitting, Offer
+
+admin.site.register(Dog)
+admin.site.register(Sitting)
+admin.site.register(Offer)
