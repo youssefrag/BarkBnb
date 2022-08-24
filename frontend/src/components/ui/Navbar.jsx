@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import { makeStyles } from "@mui/styles";
 
 export const Navbar = () => {
 
