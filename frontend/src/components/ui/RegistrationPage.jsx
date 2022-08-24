@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import {Button, TextField, Typography } from '@mui/material';
 import { makeStyles } from "@mui/styles";
@@ -12,26 +11,42 @@ const useStyles = makeStyles({
 
 export const RegistrationPage = () => {
 
-  const classes = useStyles()
+    const classes = useStyles()
 
-  const [user, setUser] = useState({
-      name: '',
-      email: '',
-      password: '',
-  })
+    let navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    setUser(prev => ({...user, [name]: value}))
-  }
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+    })
 
-  const handleSubmit = () => {
-      const { name, email, password } = user
-      if (!name || !email || !password) {
-          alert('Empty Values!')
-          return
-      }
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setUser(prev => ({...user, [name]: value}))
+    }
+
+    const handleSubmit = () => {
+        const { name, email, password } = user
+        if (!name || !email || !password) {
+           alert('Empty Values!')
+            return
+        }
+        fetch('http://127.0.0.1:8000/api/users/create', {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then((result) => { 
+            console.log(result.data)
+            // navigate("/login")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
   }
 
   return (
