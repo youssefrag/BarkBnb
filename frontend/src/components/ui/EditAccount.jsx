@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
 import { makeStyles } from "@mui/styles";
-import { Typography, TextField } from '@mui/material';
+import { Typography, TextField, Button } from '@mui/material';
 
 import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
@@ -21,10 +21,11 @@ export const EditAccount = () => {
 
     let navigate = useNavigate();
 
-    const { userContextName } = useContext(UserContext);
+    const { userContextName, userContextEmail } = useContext(UserContext);
 
     let [profile, setProfile] = useState({
         name: userContextName,
+        email: userContextEmail,
         username: '',
         bio: '',
         profile_image: null,
@@ -42,6 +43,33 @@ export const EditAccount = () => {
         setProfile(prev => ({...profile, [name]: file}))
     }
 
+    // const handleSubmit = () => {
+    //     console.log(profile.profile_image)
+    //     fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
+    //         method: "POST",
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(profile)
+    //     })
+    // }
+
+    const handleSubmit = () => {
+        console.log(profile.profile_image)
+
+        const profileUploadData = new FormData()
+        profileUploadData.append('name', profile.name)
+        profileUploadData.append('email', profile.email)
+        profileUploadData.append('username', profile.username)
+        profileUploadData.append('bio', profile.bio)
+        profileUploadData.append('picture_url', profile.profile_image, profile.profile_image.name)
+
+        fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
+            method: "POST",
+            body: profileUploadData
+        })
+    }
+
     return (
         <div className={classes.root}>
             <Typography
@@ -53,6 +81,7 @@ export const EditAccount = () => {
                 id='edit-account'
                 noValidate
                 autoComplete='off'
+                enctype="multipart/form-data"
             >
             <TextField
                 type="text"
@@ -92,6 +121,14 @@ export const EditAccount = () => {
                     onChange={handlePictureUpload}
                 />
             </label>
+
+            <Button
+                    variant='contained' 
+                    size='large'
+                    onClick={handleSubmit}
+                >
+                    Update Profile!
+                </Button>
             </form>
         </div>
     )

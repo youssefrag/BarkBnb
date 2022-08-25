@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from rest_framework.parsers import MultiPartParser, FormParser
+
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -55,3 +57,15 @@ def registerUser(request):
 def logoutUser(request):
     logout(request)
     return Response()
+
+@api_view(['POST'])
+def editAccount(request, email):
+
+    parser_classes = (MultiPartParser, FormParser)
+    profile = Profile.objects.get(email=email)
+
+    serializer = ProfileSerializer(data=request.data, instance=profile)
+    if serializer.is_valid():
+        print(request.data)
+        serializer.save()
+        return Response(serializer.data)

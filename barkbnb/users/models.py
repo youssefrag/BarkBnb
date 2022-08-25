@@ -11,8 +11,8 @@ class Profile(models.Model):
     sittings_completed = models.IntegerField(default=0, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     profile_image = models.ImageField(
-        null=True, blank=True
-        # upload_to='profiles/', default="profiles/user-default.png"
+        null=True, blank=True,
+        upload_to='profiles/', default="profiles/user-default.png"
         )
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
