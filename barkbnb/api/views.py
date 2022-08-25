@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 
 from users.models import Profile
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
 
 from .serializers import SittingSerializer, ProfileSerializer, UserSerializer
 from sittings.models import Sitting
@@ -42,6 +43,9 @@ def registerUser(request):
         )
 
         serializer = UserSerializer(user, many=False)
+
+        login(request, user)
+
         return Response(serializer.data)
     except:
         message = {'detail': 'User with this email already exists'}
