@@ -4,7 +4,6 @@ import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
 import { UserContext } from '../context/userContext';
-// import Cookies from 'js-cookie';
 
 export const Navbar = () => {
 
@@ -12,12 +11,25 @@ export const Navbar = () => {
 
   const {userContextName, setName, userContextEmail, setUserEmail, isUserLoggedIn, setUserLoggedIn } = useContext(UserContext);
 
+//   const handleLogout = () => {
+//       setName()
+//       setUserEmail()
+//       setUserLoggedIn(false)
+//   }
+
+
   const handleLogout = () => {
-    //   Cookies.remove('user')
-    //   Cookies.remove('user_email')
-      setName()
-      setUserEmail()
-      setUserLoggedIn(false)
+    fetch('http://127.0.0.1:8000/api/users/logout', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+    })
+    .then(() => {
+        setName()
+        setUserEmail()
+        setUserLoggedIn(false)
+    })
   }
 
   if (isUserLoggedIn === true) {

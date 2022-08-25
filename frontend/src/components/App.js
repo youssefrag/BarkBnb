@@ -15,13 +15,6 @@ function App() {
 
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 
-  // useEffect(() => {
-  //   if (isUserLoggedIn === false) {
-  //     Cookies.remove('user')
-  //     Cookies.remove('user_email')
-  //   }
-  // }, [isUserLoggedIn])
-
   return (
     <div className="App">
       <UserContextProvider isUserLoggedIn={isUserLoggedIn} setUserLoggedIn={setUserLoggedIn}>
