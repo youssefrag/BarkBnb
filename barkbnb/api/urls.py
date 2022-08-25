@@ -6,5 +6,6 @@ urlpatterns = [
     path('sittings', views.getSittings, name='get-sittings'),
     path('users/create', views.registerUser, name='register-user'),
     path('users/logout', views.logoutUser, name='logout-user'),
+    path('users/login', views.loginUser, name='login-user'),
     path('profile-edit/<str:email>', views.editAccount)
 ]

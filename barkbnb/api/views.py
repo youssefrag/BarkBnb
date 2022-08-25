@@ -34,11 +34,19 @@ def getRoutes(request):
 
     return Response(routes)
 
-@api_view(['GET'])
-def getSittings(request):
-    sittings = Sitting.objects.all()
-    serializer = SittingSerializer(sittings, many=True)
-    return Response(serializer.data)
+
+def loginUser(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+
+        try:
+            user = User.objects.get(email=email)
+        except:
+            message = {'detail': 'email does not match a user'}
+            return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response()
 
 @api_view(['POST'])
 def registerUser(request):
@@ -60,10 +68,12 @@ def registerUser(request):
         message = {'detail': 'User with this email already exists'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def logoutUser(request):
     logout(request)
     return Response()
+
 
 @api_view(['POST'])
 def editAccount(request, email):
@@ -80,3 +90,9 @@ def editAccount(request, email):
 
         return Response()
 
+
+@api_view(['GET'])
+def getSittings(request):
+    sittings = Sitting.objects.all()
+    serializer = SittingSerializer(sittings, many=True)
+    return Response(serializer.data)

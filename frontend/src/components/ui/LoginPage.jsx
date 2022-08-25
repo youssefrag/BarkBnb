@@ -17,8 +17,77 @@ export const LoginPage = () => {
 
     let navigate = useNavigate();
 
+    const [user, setUser] = useState({
+        email:'',
+        password:''
+    })
 
-    return (
-    <div className={classes.root}>LoginPage</div>
-    )
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setUser(prev => ({...user, [name]: value}))
+    }
+
+    const handleSubmit = () => {
+        const { email, password } = user
+        if ( !email || !password) {
+            alert('Empty Values!')
+            return
+        }
+        fetch('http://127.0.0.1:8000/api/users/login', {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        // .then(() => {
+        //     setName(user.name)
+        //     setUserEmail(user.email)
+        //     setUserLoggedIn(true)
+        //     navigate('/edit-account')
+        // })
+    }
+
+      return(
+        <div className={classes.root}>
+          <Typography
+            variant='h3'
+          >
+            Please login to book sitting
+          </Typography>
+          <form
+            id="registration-form"
+            noValidate 
+            autoComplete="off"
+          >
+            <TextField
+              type="text"
+              label="Email"
+              name='email'
+              color="secondary"
+              required
+              value={user.email}
+              onChange={handleChange}
+            />
+            <TextField
+              type="password"
+              label="Password"
+              name='password'
+              color="secondary"
+              required
+              value={user.password}
+              onChange={handleChange}
+            />
+            <Button
+              variant='contained' 
+              size='large'
+              onClick={handleSubmit}
+    
+            >
+              Login!
+            </Button>
+          </form>
+        </div>
+      )
 }
