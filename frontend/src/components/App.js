@@ -15,11 +15,12 @@ function App() {
 
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 
-  useEffect(() => {
-    if (Cookies.get('user_email')) {
-      setUserLoggedIn(true)
-    }
-  }, [Cookies.get('user_email')])
+  // useEffect(() => {
+  //   if (isUserLoggedIn === false) {
+  //     Cookies.remove('user')
+  //     Cookies.remove('user_email')
+  //   }
+  // }, [isUserLoggedIn])
 
   return (
     <div className="App">

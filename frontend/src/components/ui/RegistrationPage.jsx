@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import {Button, TextField, Typography, Alert } from '@mui/material';
 import { makeStyles } from "@mui/styles";
+
+import { UserContext } from '../context/userContext';
 
 import Cookies from 'js-cookie';
 
@@ -16,6 +18,8 @@ export const RegistrationPage = () => {
     const classes = useStyles()
 
     let navigate = useNavigate();
+
+    const {userContextName, setName, userContextEmail, setUserEmail, isUserLoggedIn, setUserLoggedIn } = useContext(UserContext);
 
     const [user, setUser] = useState({
         name: '',
@@ -46,8 +50,9 @@ export const RegistrationPage = () => {
             body: JSON.stringify(user)
         })
         .then(() => {
-            Cookies.set('user_email', user.email)
-            Cookies.set('user', user.name)
+            setName(user.name)
+            setUserEmail(user.email)
+            setUserLoggedIn(true)
             navigate('/edit-account')
         })
   }

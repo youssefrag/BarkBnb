@@ -4,12 +4,21 @@ import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
 import { UserContext } from '../context/userContext';
+// import Cookies from 'js-cookie';
 
 export const Navbar = () => {
 
   let navigate = useNavigate();
 
-  const {userContextUserName, setUserName, isUserLoggedIn, setUserLoggedIn } = useContext(UserContext);
+  const {userContextName, setName, userContextEmail, setUserEmail, isUserLoggedIn, setUserLoggedIn } = useContext(UserContext);
+
+  const handleLogout = () => {
+    //   Cookies.remove('user')
+    //   Cookies.remove('user_email')
+      setName()
+      setUserEmail()
+      setUserLoggedIn(false)
+  }
 
   if (isUserLoggedIn === true) {
       return(
@@ -17,13 +26,13 @@ export const Navbar = () => {
         >
             <Toolbar>
                 <Typography variant="h4">
-                    Welcome {userContextUserName}
+                    Welcome {userContextName}
                 </Typography>
                 <Button
                     color="secondary"
                     variant='contained' 
                     size='large'
-                    // onClick={() => navigate("/register")}
+                    onClick={() => navigate('/edit-account')}
                 >
                     Edit Account
                 </Button>
@@ -31,7 +40,7 @@ export const Navbar = () => {
                     color="secondary"
                     variant='contained' 
                     size='large'
-                    // onClick={() => navigate("/register")}
+                    onClick={handleLogout}
                 >
                     Logout
                 </Button>
