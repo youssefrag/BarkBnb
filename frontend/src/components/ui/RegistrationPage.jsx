@@ -1,11 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
-import {Button, TextField, Typography, Alert } from '@mui/material';
+import {Button, TextField, Typography } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
 import { UserContext } from '../context/userContext';
-
-import Cookies from 'js-cookie';
 
 const useStyles = makeStyles({
     root: {

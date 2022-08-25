@@ -11,12 +11,6 @@ export const Navbar = () => {
 
   const {userContextName, setName, userContextEmail, setUserEmail, isUserLoggedIn, setUserLoggedIn } = useContext(UserContext);
 
-//   const handleLogout = () => {
-//       setName()
-//       setUserEmail()
-//       setUserLoggedIn(false)
-//   }
-
 
   const handleLogout = () => {
     fetch('http://127.0.0.1:8000/api/users/logout', {
@@ -44,14 +38,6 @@ export const Navbar = () => {
                     color="secondary"
                     variant='contained' 
                     size='large'
-                    onClick={() => navigate('/edit-account')}
-                >
-                    Edit Account
-                </Button>
-                <Button
-                    color="secondary"
-                    variant='contained' 
-                    size='large'
                     onClick={handleLogout}
                 >
                     Logout
@@ -71,7 +57,7 @@ export const Navbar = () => {
                     color="secondary"
                     variant='contained' 
                     size='large'
-                    // onClick={() => navigate("/register")}
+                    onClick={() => navigate("/login")}
                 >
                     Login
                 </Button>
