@@ -18,6 +18,8 @@ from sittings.models import Sitting
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
+from django.views.decorators.csrf import csrf_exempt
+
 from rest_framework import status
 
 @api_view(['GET'])
@@ -34,19 +36,22 @@ def getRoutes(request):
 
     return Response(routes)
 
-
+@csrf_exempt
+@api_view(['POST'])
 def loginUser(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
+    data = request.data
+    # print(data)
+    # if request.method == 'POST':
+    #     email = request.POST['email']
+    #     password = request.POST['password']
 
-        try:
-            user = User.objects.get(email=email)
-        except:
-            message = {'detail': 'email does not match a user'}
-            return Response(message, status=status.HTTP_400_BAD_REQUEST)
+    #     try:
+    #         user = User.objects.get(email=email)
+    #     except:
+    #         message = {'detail': 'email does not match a user'}
+    #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response()
+    return Response()
 
 @api_view(['POST'])
 def registerUser(request):
