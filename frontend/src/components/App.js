@@ -4,8 +4,11 @@ import { useState, useEffect } from "react";
 import { UserContextProvider } from "./context/userContext";
 
 import './App.css';
+
 import { Navbar } from './ui/Navbar';
 import { RegistrationPage } from './ui/RegistrationPage'
+import { EditAccount } from "./ui/EditAccount";
+
 import Cookies from "js-cookie";
 
 function App() {
@@ -25,6 +28,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/register' element= {<RegistrationPage />} />
+            <Route path='/edit-account' element={<EditAccount />} />
           </Routes>
         </header>
       </UserContextProvider>

@@ -48,6 +48,7 @@ export const RegistrationPage = () => {
         .then(() => {
             Cookies.set('user_email', user.email)
             Cookies.set('user', user.name)
+            navigate('/edit-account')
         })
   }
 
