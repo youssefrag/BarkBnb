@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import {Button, TextField, Typography, Alert } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 
+import Cookies from 'js-cookie';
+
 const useStyles = makeStyles({
     root: {
         marginTop:'100px'
@@ -44,7 +46,8 @@ export const RegistrationPage = () => {
             body: JSON.stringify(user)
         })
         .then(() => {
-            setAlert('success')
+            Cookies.set('user_email', user.email)
+            Cookies.set('user', user.name)
         })
   }
 
