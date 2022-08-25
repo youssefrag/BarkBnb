@@ -27,12 +27,19 @@ export const EditAccount = () => {
         name: userContextName,
         username: '',
         bio: '',
+        profile_image: null,
     })
 
     const handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
         setProfile(prev => ({...profile, [name]: value}))
+    }
+
+    const handlePictureUpload = (e) => {
+        const name = e.target.name
+        const file = e.target.files[0]
+        setProfile(prev => ({...profile, [name]: file}))
     }
 
     return (
@@ -77,6 +84,14 @@ export const EditAccount = () => {
                 onChange={handleChange}
                 // className={classes.field}
             />
+            <label>
+                Profile Image
+                <input 
+                    type="file"
+                    name='profile_image'
+                    onChange={handlePictureUpload}
+                />
+            </label>
             </form>
         </div>
     )
