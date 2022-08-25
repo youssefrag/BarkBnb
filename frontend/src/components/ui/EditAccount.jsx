@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 
 const useStyles = makeStyles({
     root: {
-        marginTop:'300px'
+        marginTop:'100px'
     }
 })
 
@@ -19,7 +19,7 @@ export const EditAccount = () => {
             <Typography
                 variant='h3'
             >
-                Registration Page
+                Edit Account
             </Typography>
         </div>
     )
