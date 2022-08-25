@@ -62,7 +62,7 @@ export const EditAccount = () => {
         profileUploadData.append('email', profile.email)
         profileUploadData.append('username', profile.username)
         profileUploadData.append('bio', profile.bio)
-        profileUploadData.append('picture_url', profile.profile_image, profile.profile_image.name)
+        profileUploadData.append('profile_image', profile.profile_image, profile.profile_image.name)
 
         fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
             method: "POST",

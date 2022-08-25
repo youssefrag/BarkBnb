@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 import os
 from django.conf import settings
 
+from users.forms import ProfileForm
+
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from users.models import Profile
@@ -68,8 +70,13 @@ def editAccount(request, email):
 
     profile = Profile.objects.get(email=email)
 
-    serializer = ProfileSerializer(data=request.data, instance=profile)
-    if serializer.is_valid():
-        print(request.data)
-        serializer.save()
-        return Response(serializer.data)
+    profile.profile_image.save(request.FILES['profile_image'].name, request.FILES['profile_image'])
+
+    form = ProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(data=request.data, instance=profile)
+        form.save()
+
+        return Response()
+
