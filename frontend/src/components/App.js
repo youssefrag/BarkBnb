@@ -23,6 +23,7 @@ function App() {
         <header>
           <Navbar />
           <Routes>
+            <Route path='/' element={ <HomePage />} />
             <Route path='/register' element= {<RegistrationPage />} />
             <Route path='/login' element={ isUserLoggedIn ? <HomePage /> : <LoginPage />} />
             <Route path='/edit-account' element={ isUserLoggedIn ? <EditAccount /> : <HomePage />} />

@@ -40,18 +40,27 @@ def getRoutes(request):
 @api_view(['POST'])
 def loginUser(request):
     data = request.data
-    # print(data)
-    # if request.method == 'POST':
-    #     email = request.POST['email']
-    #     password = request.POST['password']
+    if request.method == 'POST':
+        email = data['email']
+        password = data['password']
 
-    #     try:
-    #         user = User.objects.get(email=email)
-    #     except:
-    #         message = {'detail': 'email does not match a user'}
-    #         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            user = User.objects.get(email=email)
+        except:
+            message = {'detail': 'email does not match a user'}
+            return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
-    return Response()
+    username = user.username
+    user = authenticate(request, username=username, password=password)
+    
+    if user is not None:
+        login(request, user)
+        serializer = UserSerializer(user, many=False)
+        message = {'detail': 'user has been logged in'}
+        return Response(serializer.data)
+    else:
+        message = {'detail': 'Username or password is incorrect'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def registerUser(request):

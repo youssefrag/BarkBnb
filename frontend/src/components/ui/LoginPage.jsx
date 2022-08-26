@@ -17,6 +17,8 @@ export const LoginPage = () => {
 
     let navigate = useNavigate();
 
+    const {userContextName, setName, userContextEmail, setUserEmail, isUserLoggedIn, setUserLoggedIn } = useContext(UserContext);
+
     const [user, setUser] = useState({
         email:'',
         password:''
@@ -41,12 +43,13 @@ export const LoginPage = () => {
             },
             body: JSON.stringify(user)
         })
-        // .then(() => {
-        //     setName(user.name)
-        //     setUserEmail(user.email)
-        //     setUserLoggedIn(true)
-        //     navigate('/edit-account')
-        // })
+        .then(async (response) => {
+            let result = await response.json()
+            setName(result.first_name)
+            setUserEmail(result.email)
+            setUserLoggedIn(true)
+            navigate('/')
+        })
     }
 
       return(
