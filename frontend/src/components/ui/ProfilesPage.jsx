@@ -14,17 +14,26 @@ export const ProfilesPage = () => {
     useEffect(() => {
         getProfiles()
     })
+    
+    const [profiles, setProfiles] = useState([])
+
+    let imgLink = ''
 
     let getProfiles = async () => {
         let response = await fetch('http://127.0.0.1:8000/api/profiles', {
             method: "GET"
         })
         let data = await response.json()
-        console.log(data)
+        // console.log(data[0].profile_image)
+        imgLink = 'http://127.0.0.1:8000' + data[0].profile_image
+        console.log(imgLink)
     }
         
-    const [profiles, setProfiles] = useState([])
+
     return (
-        <div className={classes.root}>ProfilesPage</div>
+        <div className={classes.root}>
+            ProfilesPage
+            <img alt='profile' src={imgLink} />
+        </div>
     )
 }
