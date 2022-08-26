@@ -25,7 +25,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={ <HomePage />} />
-            <Route path='/profile' element={ isUserLoggedIn ? <ProfilePage /> : <LoginPage />} />
+            <Route path='/profile/' element={ isUserLoggedIn ? <ProfilePage /> : <LoginPage />} />
             <Route path='/register' element= {<RegistrationPage />} />
             <Route path='/login' element={ isUserLoggedIn ? <HomePage /> : <LoginPage />} />
             <Route path='/edit-account' element={ isUserLoggedIn ? <EditAccount /> : <HomePage />} />

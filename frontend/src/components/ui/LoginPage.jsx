@@ -30,27 +30,26 @@ export const LoginPage = () => {
         setUser(prev => ({...user, [name]: value}))
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const { email, password } = user
         if ( !email || !password) {
             alert('Empty Values!')
             return
         }
-        fetch('http://127.0.0.1:8000/api/users/login', {
+        let response = await fetch('http://127.0.0.1:8000/api/users/login', {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
         })
-        .then(async (response) => {
-            let result = await response.json()
-            setName(result.first_name)
-            setUserEmail(result.email)
-            setUserLoggedIn(true)
-            navigate('/profile')
-        })
+        let result = await response.json()
+        setName(result.first_name)
+        setUserEmail(result.email)
+        setUserLoggedIn(true)
+        navigate('/profile')
     }
+    
 
       return(
         <div className={classes.root}>
