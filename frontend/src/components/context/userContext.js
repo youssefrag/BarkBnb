@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 import Cookies from 'js-cookie';
 const defaultState = {
-    userEmail: Cookies.get('userEmail'),
+    userEmail: Cookies.get('user_email'),
     name: Cookies.get('user'),
     setUserEmail: () => {},
     setName: () => {},
