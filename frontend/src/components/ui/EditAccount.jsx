@@ -26,7 +26,6 @@ export const EditAccount = () => {
     let [profile, setProfile] = useState({
         name: userContextName,
         email: userContextEmail,
-        username: '',
         bio: '',
         profile_image: null,
     })
@@ -60,7 +59,6 @@ export const EditAccount = () => {
         const profileUploadData = new FormData()
         profileUploadData.append('name', profile.name)
         profileUploadData.append('email', profile.email)
-        profileUploadData.append('username', profile.username)
         profileUploadData.append('bio', profile.bio)
         profileUploadData.append('profile_image', profile.profile_image, profile.profile_image.name)
 
@@ -90,16 +88,6 @@ export const EditAccount = () => {
                 color="secondary"
                 required
                 value={profile.name}
-                onChange={handleChange}
-                // className={classes.field}
-            />
-            <TextField
-                type="text"
-                label="Username"
-                name='username'
-                color="secondary"
-                required
-                value={profile.username}
                 onChange={handleChange}
                 // className={classes.field}
             />

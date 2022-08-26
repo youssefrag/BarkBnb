@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path='/register' element= {<RegistrationPage />} />
             <Route path='/login' element={ isUserLoggedIn ? <HomePage /> : <LoginPage />} />
-            <Route path='/edit-account' element={<EditAccount />} />
+            <Route path='/edit-account' element={ isUserLoggedIn ? <EditAccount /> : <HomePage />} />
           </Routes>
         </header>
       </UserContextProvider>
