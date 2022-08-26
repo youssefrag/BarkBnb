@@ -47,7 +47,7 @@ export const LoginPage = () => {
         setName(result.first_name)
         setUserEmail(result.email)
         setUserLoggedIn(true)
-        navigate('/profile')
+        navigate('/profiles')
     }
     
 

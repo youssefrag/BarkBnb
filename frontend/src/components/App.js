@@ -10,13 +10,19 @@ import { RegistrationPage } from './ui/RegistrationPage'
 import { EditAccount } from "./ui/EditAccount";
 import { LoginPage } from "./ui/LoginPage";
 import { HomePage } from "./ui/HomePage";
-import { ProfilePage } from "./ui/ProfilePage";
+import { ProfilesPage } from "./ui/ProfilesPage";
 
 import Cookies from "js-cookie";
 
 function App() {
 
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (Cookies.get('user')) {
+      setUserLoggedIn(true)
+    }
+  }, [Cookies.get('user')])
 
   return (
     <div className="App">
@@ -25,7 +31,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={ <HomePage />} />
-            <Route path='/profile/' element={ isUserLoggedIn ? <ProfilePage /> : <LoginPage />} />
+            <Route path='/profiles/' element={ isUserLoggedIn ? <ProfilesPage /> : <LoginPage />} />
             <Route path='/register' element= {<RegistrationPage />} />
             <Route path='/login' element={ isUserLoggedIn ? <HomePage /> : <LoginPage />} />
             <Route path='/edit-account' element={ isUserLoggedIn ? <EditAccount /> : <HomePage />} />
