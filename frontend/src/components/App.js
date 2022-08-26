@@ -10,6 +10,7 @@ import { RegistrationPage } from './ui/RegistrationPage'
 import { EditAccount } from "./ui/EditAccount";
 import { LoginPage } from "./ui/LoginPage";
 import { HomePage } from "./ui/HomePage";
+import { ProfilePage } from "./ui/ProfilePage";
 
 import Cookies from "js-cookie";
 
@@ -24,6 +25,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={ <HomePage />} />
+            <Route path='/profile' element={ isUserLoggedIn ? <ProfilePage /> : <LoginPage />} />
             <Route path='/register' element= {<RegistrationPage />} />
             <Route path='/login' element={ isUserLoggedIn ? <HomePage /> : <LoginPage />} />
             <Route path='/edit-account' element={ isUserLoggedIn ? <EditAccount /> : <HomePage />} />

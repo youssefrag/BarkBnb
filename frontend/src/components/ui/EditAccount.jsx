@@ -42,20 +42,7 @@ export const EditAccount = () => {
         setProfile(prev => ({...profile, [name]: file}))
     }
 
-    // const handleSubmit = () => {
-    //     console.log(profile.profile_image)
-    //     fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
-    //         method: "POST",
-    //         headers: {
-    //           'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(profile)
-    //     })
-    // }
-
     const handleSubmit = () => {
-        console.log(profile.profile_image)
-
         const profileUploadData = new FormData()
         profileUploadData.append('name', profile.name)
         profileUploadData.append('email', profile.email)
