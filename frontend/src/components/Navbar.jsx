@@ -126,6 +126,7 @@ export const Navbar = () => {
               </Typography>
             </Button>
             <Button
+              elevation={0}
               className={classes.loginBtn}
               variant="contained"
               onClick={() => navigate("/login")}

@@ -36,4 +36,5 @@ export const theme = createTheme({
     "9.6rem",
     "12.8rem",
   ],
+  shadows: ["none"],
 });
