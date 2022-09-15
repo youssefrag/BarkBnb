@@ -12,20 +12,12 @@ import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { theme } from "./theme";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme";
 
 import Cookies from "js-cookie";
 
 import { Button } from "@mui/material";
-
-const theme = createTheme({
-  palette: {
-    pimary: {
-      main: "#094211",
-    },
-  },
-});
 
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -39,10 +31,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Button variant="contained" size="large">
-          Hello
-        </Button>
-        {/* <UserContextProvider
+        <UserContextProvider
           isUserLoggedIn={isUserLoggedIn}
           setUserLoggedIn={setUserLoggedIn}
         >
@@ -65,7 +54,7 @@ function App() {
               />
             </Routes>
           </header>
-        </UserContextProvider> */}
+        </UserContextProvider>
       </ThemeProvider>
     </div>
   );
