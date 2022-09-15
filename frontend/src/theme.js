@@ -6,6 +6,8 @@ export const theme = createTheme({
       main: "#e67e22",
       light: "#fae5d3",
       lighter: "#fdf2e9",
+      dark: "#cf711f",
+      darker: "#45260a",
     },
   },
   typography: {
@@ -14,6 +16,10 @@ export const theme = createTheme({
     },
     h1: {
       fontSize: "5rem",
+    },
+    btn: {
+      fontSize: "1.4rem",
+      fontWeight: 600,
     },
   },
   spacing: [

@@ -10,17 +10,48 @@ import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
+    tool: {
       backgroundColor: theme.palette.primary.light,
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
+      paddingY: 2,
+    },
+    logoContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    btnContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "2rem",
+    },
+    loginBtn: {
+      padding: "1.2rem 2,4rem",
+      color: "#fff",
+      height: "4.2rem",
+    },
+    navBtn: {
+      "&:hover": {
+        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
+      },
     },
   })
 );
 
-const logoStyle = {
-  height: "5rem",
-  width: "5rem",
+const styles = {
+  logoIcon: {
+    height: "5rem",
+    width: "5rem",
+  },
+  btnStyle: {
+    paddingY: 3,
+    paddingX: 5,
+    borderRadius: "15px",
+  },
 };
 
 export const Navbar = () => {
@@ -68,38 +99,41 @@ export const Navbar = () => {
     );
   } else {
     return (
-      <AppBar elevation={0} display="flex">
-        <Toolbar className={classes.root}>
-          <Box>
-            <Typography variant="h1" display="inline">
-              Bark
-            </Typography>
-            <PetsIcon
-              color="primary"
-              sx={logoStyle}
-              // className={classes.logoIcon}
-            />
-            <Typography variant="h1" display="inline">
-              Bnb
-            </Typography>
+      <AppBar elevation={0}>
+        <Toolbar className={classes.tool} sx={{ paddingY: 2 }}>
+          <Box className={classes.logoContainer}>
+            <Typography variant="h1">Bark</Typography>
+            <PetsIcon color="primary" sx={styles.logoIcon} />
+            <Typography variant="h1">Bnb</Typography>
           </Box>
-          <Box>
-            <Button
-              sx={{ marginLeft: 4 }}
-              color="secondary"
-              variant="contained"
-              size="large"
-              onClick={() => navigate("/login")}
-            >
-              Login
+          <Box className={classes.btnContainer}>
+            <Button>
+              <Typography
+                className={classes.navBtn}
+                variant="btn"
+                color="black"
+              >
+                How it works
+              </Typography>
+            </Button>
+            <Button>
+              <Typography
+                className={classes.navBtn}
+                variant="btn"
+                color="black"
+              >
+                Sittings
+              </Typography>
             </Button>
             <Button
-              color="secondary"
+              className={classes.loginBtn}
               variant="contained"
-              size="large"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/login")}
+              sx={styles.btnStyle}
             >
-              Sign Up
+              <Typography color="#fff" variant="btn">
+                Login/Register
+              </Typography>
             </Button>
           </Box>
         </Toolbar>
