@@ -3,14 +3,31 @@ import { createTheme } from "@mui/material";
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#3bc9db",
+      main: "#e67e22",
+      light: "#fae5d3",
+      lighter: "#fdf2e9",
     },
   },
   typography: {
     allVariants: {
       fontFamily: "Rubik, sans-serif",
-      // fontFamily: "Times New Roman",
+    },
+    h1: {
+      fontSize: "5rem",
     },
   },
-  spacing: [0, "1rem", 3, 5, 8],
+  spacing: [
+    "0.2rem",
+    "0.4rem",
+    "0.8rem",
+    "1.2rem",
+    "1.6rem",
+    "2.4rem",
+    "3.2rem",
+    "4.8rem",
+    "6.4rem",
+    "8rem",
+    "9.6rem",
+    "12.8rem",
+  ],
 });

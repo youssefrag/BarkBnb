@@ -1,13 +1,30 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { AppBar, Button, Toolbar, Typography, Box } from "@mui/material";
 
 import { UserContext } from "../context/userContext";
-import { useTheme } from "@mui/material";
+
+import PetsIcon from "@mui/icons-material/Pets";
+
+import { createStyles, makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.primary.light,
+      display: "flex",
+      justifyContent: "space-between",
+    },
+  })
+);
+
+const logoStyle = {
+  height: "5rem",
+  width: "5rem",
+};
 
 export const Navbar = () => {
-  const theme = useTheme();
+  const classes = useStyles();
 
   let navigate = useNavigate();
 
@@ -35,7 +52,7 @@ export const Navbar = () => {
 
   if (isUserLoggedIn === true) {
     return (
-      <AppBar color="primary">
+      <AppBar className={classes.root}>
         <Toolbar>
           <Typography variant="h4">Welcome {userContextName}</Typography>
           <Button
@@ -51,25 +68,40 @@ export const Navbar = () => {
     );
   } else {
     return (
-      <AppBar>
-        <Toolbar>
-          <Typography variant="h4">BarkBnb</Typography>
-          <Button
-            color="secondary"
-            variant="contained"
-            size="large"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </Button>
-          <Button
-            color="secondary"
-            variant="contained"
-            size="large"
-            onClick={() => navigate("/register")}
-          >
-            Sign Up
-          </Button>
+      <AppBar elevation={0} display="flex">
+        <Toolbar className={classes.root}>
+          <Box>
+            <Typography variant="h1" display="inline">
+              Bark
+            </Typography>
+            <PetsIcon
+              color="primary"
+              sx={logoStyle}
+              // className={classes.logoIcon}
+            />
+            <Typography variant="h1" display="inline">
+              Bnb
+            </Typography>
+          </Box>
+          <Box>
+            <Button
+              sx={{ marginLeft: 4 }}
+              color="secondary"
+              variant="contained"
+              size="large"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Button>
+            <Button
+              color="secondary"
+              variant="contained"
+              size="large"
+              onClick={() => navigate("/register")}
+            >
+              Sign Up
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
     );
