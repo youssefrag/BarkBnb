@@ -11,7 +11,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) =>
   createStyles({
     tool: {
-      backgroundColor: theme.palette.primary.light2,
+      backgroundColor: theme.palette.primary.light3,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) =>
 
 const overrideTheme = {
   logoIcon: {
-    height: "5rem",
-    width: "5rem",
+    height: "3rem",
+    width: "3rem",
   },
   navBtn: {
     color: "#0e3a61",
@@ -106,9 +106,9 @@ export const Navbar = () => {
       <AppBar elevation={0}>
         <Toolbar className={classes.tool}>
           <Box className={classes.logoContainer} onClick={() => navigate("/")}>
-            <Typography variant="h1">Bark</Typography>
+            <Typography variant="h2">Bark</Typography>
             <PetsIcon color="primaryDark2" sx={overrideTheme.logoIcon} />
-            <Typography variant="h1">Bnb</Typography>
+            <Typography variant="h2">Bnb</Typography>
           </Box>
           <Box className={classes.btnContainer}>
             <Button>

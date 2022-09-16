@@ -5,6 +5,7 @@ export const theme = createTheme({
     primary: {
       main: "#14538a",
       light2: "#a1bad0",
+      light3: "#d0dde8",
     },
     primaryLight1: {
       main: "#5b87ad",
@@ -28,6 +29,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiContainer: {
+      styleOverrides: {
+        maxWidthXl: {
+          maxWidth: "130rem",
+        },
+      },
+    },
   },
   typography: {
     allVariants: {
@@ -35,11 +43,21 @@ export const theme = createTheme({
       color: "#343a40",
     },
     h1: {
-      fontSize: "5rem",
+      fontSize: "5.2rem",
+      lineHeight: 1.05,
+      fontWeight: 700,
+    },
+    h2: {
+      fontSize: "3.4rem",
+      fontWeight: 500,
     },
     btn: {
       fontSize: "1.4rem",
       fontWeight: 600,
+    },
+    h3: {
+      fontSize: "2rem",
+      lineHeight: 1.6,
     },
   },
   spacing: [
