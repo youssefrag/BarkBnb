@@ -51,13 +51,13 @@ export const theme = createTheme({
       fontSize: "3.4rem",
       fontWeight: 500,
     },
-    btn: {
-      fontSize: "1.4rem",
-      fontWeight: 600,
-    },
     h3: {
       fontSize: "2rem",
       lineHeight: 1.6,
+    },
+    btn: {
+      fontSize: "1.4rem",
+      fontWeight: 600,
     },
   },
   spacing: [

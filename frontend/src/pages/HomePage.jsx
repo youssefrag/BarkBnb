@@ -1,17 +1,16 @@
 import React from "react";
 
-import { Typography, Box, Container } from "@mui/material";
+import { Typography, Box, Container, Button } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      marginTop: "7.5rem",
-    },
+    // home: {
+    //   marginTop: "7.5rem",
+    // },
     heroSection: {
       backgroundColor: theme.palette.primary.light3,
-      height: "89.5vh",
     },
     heroContainer: {
       display: "flex",
@@ -21,6 +20,9 @@ const useStyles = makeStyles((theme) =>
       width: "50%",
       paddingTop: "5.2rem",
     },
+    actionBtn: {
+      padding: "1.6rem 3.2rem",
+    },
   })
 );
 
@@ -28,17 +30,35 @@ export const HomePage = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Box className={classes.heroSection}>
+    <Box className={classes.home} marginTop={8}>
+      <Box className={classes.heroSection} paddingBottom={11}>
         <Container className={classes.heroContainer} maxWidth="xl">
           <Box className={classes.heroMainainInfo}>
-            <Typography variant="h1">
+            <Typography variant="h1" marginY={8}>
               Your puppy will always be taken care of!
             </Typography>
+            <Typography variant="h3">
+              Whether you have to go on vacation or a business trip, your puppy
+              will always be taken care of with BarkBnb!
+            </Typography>
+            <Box class={classes.heroBtnContainer} marginTop={9}>
+              <Button
+                variant="contained"
+                color="primaryDark2"
+                className={classes.actionBtn}
+              >
+                <Typography variant="btn" color="white">
+                  Get started!
+                </Typography>
+              </Button>
+              <Button className={classes.leanMore} marginLeft={8}>
+                <Typography variant="btn">Leaern more</Typography>
+              </Button>
+            </Box>
           </Box>
           <Box className={classes.heroGallery}></Box>
         </Container>
       </Box>
-    </div>
+    </Box>
   );
 };
