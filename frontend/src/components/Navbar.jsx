@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "space-between",
       alignItems: "center",
       cursor: "pointer",
+      paddingLeft: "1.8rem",
     },
     logoIcon: {
       height: "30px",
@@ -31,20 +32,16 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      gap: "3.2rem",
+      gap: "2.4rem",
+      paddingRight: "1.8rem",
     },
-    loginBtn: {
-      paddingTop: 1,
-      color: "#fff",
-      height: "4.2rem",
-      borderRadius: "50%",
-    },
-    navBtn: {
-      "&:hover": {
-        color: theme.palette.primary.main,
-        backgroundColor: theme.palette.primary,
-      },
-    },
+    // navBtn: {
+    //   color: "#343a40",
+    //   "&:hover": {
+    //     color: "#14538a",
+    //     border: "none",
+    //   },
+    // },
   })
 );
 
@@ -54,7 +51,11 @@ const overrideTheme = {
     width: "3rem",
   },
   navBtn: {
-    color: "#0e3a61",
+    color: "#343a40",
+    "&:hover": {
+      color: "#14538a",
+      border: "none",
+    },
   },
 };
 
@@ -107,38 +108,22 @@ export const Navbar = () => {
         <Toolbar className={classes.tool}>
           <Box className={classes.logoContainer} onClick={() => navigate("/")}>
             <Typography variant="h2">Bark</Typography>
-            <PetsIcon color="primaryDark2" sx={overrideTheme.logoIcon} />
+            <PetsIcon color="primary" sx={overrideTheme.logoIcon} />
             <Typography variant="h2">Bnb</Typography>
           </Box>
           <Box className={classes.btnContainer}>
-            <Button>
-              <Typography
-                className={classes.navBtn}
-                variant="btn"
-                sx={overrideTheme.navBtn}
-              >
-                How it works
-              </Typography>
+            <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
+              How it works
             </Button>
-            <Button>
-              <Typography
-                className={classes.navBtn}
-                variant="btn"
-                sx={overrideTheme.navBtn}
-              >
-                Sittings
-              </Typography>
+            <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
+              Sittings
             </Button>
             <Button
-              elevation={0}
-              color="primaryDark2"
-              className={classes.loginBtn}
+              size="medium"
               variant="contained"
               onClick={() => navigate("/login")}
             >
-              <Typography color="#fff" variant="btn">
-                Login/Register
-              </Typography>
+              Login/Register
             </Button>
           </Box>
         </Toolbar>

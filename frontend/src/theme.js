@@ -1,46 +1,45 @@
 import { createTheme } from "@mui/material";
 
+// - Font sizes(px)
+// 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
 export const theme = createTheme({
   palette: {
     primary: {
       main: "#14538a",
       light2: "#a1bad0",
       light3: "#d0dde8",
-    },
-    primaryLight1: {
-      main: "#5b87ad",
-    },
-    primaryLight2: {
-      main: "#a1bad0",
-    },
-    primaryDark1: {
-      main: "#0e3a61",
-    },
-    primaryDark2: {
-      main: "#082137",
+      dark1: "#0e3a61",
+      dark2: "#082137",
     },
   },
   components: {
     MuiButton: {
       variants: [
         {
-          props: { variant: "dashed" },
+          props: { size: "medium" },
           style: {
-            textTransform: "none",
-            border: `2px dashed #ddd`,
+            padding: "1.2rem 2.4rem",
+            fontSize: "1.6rem",
           },
         },
         {
-          props: { variant: "dashed", color: "secondary" },
+          props: { size: "large" },
           style: {
-            border: `4px dashed '#948542'`,
+            padding: "1.6rem 3.2rem",
+            fontSize: "1.8rem",
+          },
+        },
+        {
+          props: { variant: "outlined" },
+          style: {
+            border: "none",
           },
         },
       ],
       styleOverrides: {
         root: {
           borderRadius: "9px",
-          padding: "1.2rem 2.4rem",
         },
       },
     },

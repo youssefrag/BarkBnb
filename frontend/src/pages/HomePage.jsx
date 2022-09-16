@@ -6,9 +6,6 @@ import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    // home: {
-    //   marginTop: "7.5rem",
-    // },
     heroSection: {
       backgroundColor: theme.palette.primary.light3,
     },
@@ -19,6 +16,16 @@ const useStyles = makeStyles((theme) =>
     heroMainainInfo: {
       width: "50%",
       paddingTop: "5.2rem",
+    },
+    heroBtnContainer: {
+      display: "flex",
+      gap: "1.6rem",
+    },
+    learnMore: {
+      "&:hover": {
+        backgroundColor: "#14538a",
+        border: "2px white",
+      },
     },
   })
 );
@@ -38,22 +45,12 @@ export const HomePage = () => {
               Whether you have to go on vacation or a business trip, your puppy
               will always be taken care of with BarkBnb!
             </Typography>
-            <Box class={classes.heroBtnContainer} marginTop={8}>
-              <Button
-                variant="dashed"
-                color="primaryDark2"
-                className={classes.actionBtn}
-              >
-                <Typography variant="btn" color="white">
-                  Get started!
-                </Typography>
+            <Box className={classes.heroBtnContainer} marginTop={8}>
+              <Button size="large" variant="contained">
+                Get started!
               </Button>
-              <Button
-                className={classes.leanMore}
-                marginLeft={8}
-                variant="dashed"
-              >
-                <Typography variant="btn">Leaern more</Typography>
+              <Button className={classes.learnMore} size="large">
+                Learn more
               </Button>
             </Box>
           </Box>
