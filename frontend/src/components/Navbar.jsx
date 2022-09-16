@@ -11,46 +11,50 @@ import { createStyles, makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) =>
   createStyles({
     tool: {
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary.light2,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      paddingY: 2,
+      padding: "1.5rem",
     },
     logoContainer: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      cursor: "pointer",
+    },
+    logoIcon: {
+      height: "30px",
+      width: "30px",
     },
     btnContainer: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      gap: "2rem",
+      gap: "3.2rem",
     },
     loginBtn: {
-      padding: "1.2rem 2,4rem",
+      paddingTop: 1,
       color: "#fff",
       height: "4.2rem",
+      borderRadius: "50%",
     },
     navBtn: {
       "&:hover": {
         color: theme.palette.primary.main,
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary,
       },
     },
   })
 );
 
-const styles = {
+const overrideTheme = {
   logoIcon: {
     height: "5rem",
     width: "5rem",
   },
-  btnStyle: {
-    paddingY: 3,
-    paddingX: 5,
-    borderRadius: "15px",
+  navBtn: {
+    color: "#0e3a61",
   },
 };
 
@@ -100,10 +104,10 @@ export const Navbar = () => {
   } else {
     return (
       <AppBar elevation={0}>
-        <Toolbar className={classes.tool} sx={{ paddingY: 2 }}>
-          <Box className={classes.logoContainer}>
+        <Toolbar className={classes.tool}>
+          <Box className={classes.logoContainer} onClick={() => navigate("/")}>
             <Typography variant="h1">Bark</Typography>
-            <PetsIcon color="primary" sx={styles.logoIcon} />
+            <PetsIcon color="primaryDark2" sx={overrideTheme.logoIcon} />
             <Typography variant="h1">Bnb</Typography>
           </Box>
           <Box className={classes.btnContainer}>
@@ -111,7 +115,7 @@ export const Navbar = () => {
               <Typography
                 className={classes.navBtn}
                 variant="btn"
-                color="black"
+                sx={overrideTheme.navBtn}
               >
                 How it works
               </Typography>
@@ -120,17 +124,17 @@ export const Navbar = () => {
               <Typography
                 className={classes.navBtn}
                 variant="btn"
-                color="black"
+                sx={overrideTheme.navBtn}
               >
                 Sittings
               </Typography>
             </Button>
             <Button
               elevation={0}
+              color="primaryDark2"
               className={classes.loginBtn}
               variant="contained"
               onClick={() => navigate("/login")}
-              sx={styles.btnStyle}
             >
               <Typography color="#fff" variant="btn">
                 Login/Register
