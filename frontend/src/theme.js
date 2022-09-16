@@ -22,6 +22,21 @@ export const theme = createTheme({
   },
   components: {
     MuiButton: {
+      variants: [
+        {
+          props: { variant: "dashed" },
+          style: {
+            textTransform: "none",
+            border: `2px dashed #ddd`,
+          },
+        },
+        {
+          props: { variant: "dashed", color: "secondary" },
+          style: {
+            border: `4px dashed '#948542'`,
+          },
+        },
+      ],
       styleOverrides: {
         root: {
           borderRadius: "9px",

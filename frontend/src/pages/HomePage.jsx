@@ -20,9 +20,6 @@ const useStyles = makeStyles((theme) =>
       width: "50%",
       paddingTop: "5.2rem",
     },
-    actionBtn: {
-      padding: "1.6rem 3.2rem",
-    },
   })
 );
 
@@ -41,9 +38,9 @@ export const HomePage = () => {
               Whether you have to go on vacation or a business trip, your puppy
               will always be taken care of with BarkBnb!
             </Typography>
-            <Box class={classes.heroBtnContainer} marginTop={9}>
+            <Box class={classes.heroBtnContainer} marginTop={8}>
               <Button
-                variant="contained"
+                variant="dashed"
                 color="primaryDark2"
                 className={classes.actionBtn}
               >
@@ -51,7 +48,11 @@ export const HomePage = () => {
                   Get started!
                 </Typography>
               </Button>
-              <Button className={classes.leanMore} marginLeft={8}>
+              <Button
+                className={classes.leanMore}
+                marginLeft={8}
+                variant="dashed"
+              >
                 <Typography variant="btn">Leaern more</Typography>
               </Button>
             </Box>
