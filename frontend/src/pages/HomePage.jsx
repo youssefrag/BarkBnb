@@ -1,11 +1,8 @@
 import React from "react";
 
-import heroGalleryPictures from "../assets/hero-pictures";
-
 import { Typography, Box, Container, Button } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
-import { style } from "@mui/system";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -103,6 +100,16 @@ export const HomePage = () => {
               />
             </Box>
           </Box>
+        </Container>
+      </Box>
+      <Box className={classes.howItWorks} marginTop={7}>
+        <Container className={classes.heroContainer} maxWidth="xl">
+          <Typography variant="h2" color="primary">
+            How it works
+          </Typography>
+          <Typography variant="h1" marginTop={6}>
+            Get started with a few simple steps!
+          </Typography>
         </Container>
       </Box>
     </Box>
