@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) =>
     },
     imageContainer: {
       backgroundImage: "url('/images/login-signup.png')",
+
       backgroundSize: "cover",
       width: "auto",
       backgroundPosition: "-12rem",
@@ -56,95 +57,174 @@ const useStyles = makeStyles((theme) =>
       width: "100%",
       borderRadius: "9px",
     },
-    // resize: {
-    //   fontSize: "50rem",
-    // },
   })
 );
 
 const styling = {
   resize: {
-    fontSize: "50rem",
+    fontSize: "2rem",
   },
 };
 
 export const LoginRegister = () => {
   const [page, setPage] = useState("login");
-  const [hearAboutUs, setHearAboutUs] = useState("");
+  const handlePageSwitch = () => {
+    if (page === "login") {
+      setPage("register");
+    } else if (page === "register") {
+      setPage("login");
+    }
+  };
 
   const classes = useStyles();
 
-  const handleChangeHearAboutUs = (event) => {
-    setHearAboutUs(event.target.value);
-  };
+  console.log(page);
 
-  return (
-    <Box marginTop={12}>
-      <Container className={classes.heroContainer} marginTop={9} maxWidth="lg">
-        <Box className={classes.mainBox}>
-          <Box item xs={7} className={classes.information}>
-            <Typography variant="h2" color="primary.dark3" marginBottom={4}>
-              Create Account
-            </Typography>
-            <Box className={classes.inputs}></Box>
-            <Typography variant="h4" marginBottom={7}>
-              Already have an account? Login
-            </Typography>
-            <Box class={classes.form}>
-              <TextField
-                fullWidth
-                placeholder="Enter name"
-                id="name"
-                class={classes.field}
-                InputProps={{
-                  style: { fontSize: "2rem" },
-                }}
-              ></TextField>
-              <TextField
-                fullWidth
-                id="email"
-                class={classes.field}
-                InputProps={{
-                  style: { fontSize: "2rem" },
-                }}
-              ></TextField>
-              <TextField
-                fullWidth
-                id="password"
-                type="password"
-                class={classes.field}
-                InputProps={{
-                  style: { fontSize: "2rem" },
-                }}
-              ></TextField>
-              <TextField
-                fullWidth
-                id="confirm-password"
-                type="password"
-                class={classes.field}
-                InputProps={{
-                  style: { fontSize: "2rem" },
-                }}
-              ></TextField>
-
-              <Button
-                className={classes.btn}
-                sx={{
-                  backgroundColor: "#04111c",
-                  color: "#fff",
-                  "&:hover": {
-                    backgroundColor: "#fff",
-                    color: "#04111c",
-                  },
-                }}
+  if (page === "register") {
+    return (
+      <Box marginTop={12}>
+        <Container
+          className={classes.heroContainer}
+          marginTop={9}
+          maxWidth="lg"
+        >
+          <Box className={classes.mainBox}>
+            <Box item xs={7} className={classes.information}>
+              <Typography variant="h2" color="primary.dark3" marginBottom={4}>
+                Create Account
+              </Typography>
+              <Box className={classes.inputs}></Box>
+              <Typography
+                variant="h4"
+                marginBottom={7}
+                className={classes.switchPage}
+                onClick={handlePageSwitch}
               >
-                Sign Up
-              </Button>
+                Already have an account? Login
+              </Typography>
+              <Box class={classes.form}>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Full Name"
+                  id="name"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                ></TextField>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Email"
+                  id="email"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                ></TextField>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Password"
+                  id="password"
+                  type="password"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                ></TextField>
+                <TextField
+                  fullWidth
+                  placeholder="Confirm Password"
+                  id="confirm-password"
+                  type="password"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                ></TextField>
+
+                <Button
+                  className={classes.btn}
+                  sx={{
+                    backgroundColor: "#04111c",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "#04111c",
+                    },
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </Box>
             </Box>
+            <Box class={classes.imageContainer}></Box>
           </Box>
-          <Box class={classes.imageContainer}></Box>
-        </Box>
-      </Container>
-    </Box>
-  );
+        </Container>
+      </Box>
+    );
+  } else if (page === "login") {
+    return (
+      <Box marginTop={12}>
+        <Container
+          className={classes.heroContainer}
+          marginTop={9}
+          maxWidth="lg"
+        >
+          <Box className={classes.mainBox}>
+            <Box item xs={7} className={classes.information}>
+              <Typography variant="h2" color="primary.dark3" marginBottom={4}>
+                Login to your Account
+              </Typography>
+              <Box className={classes.inputs}></Box>
+              <Typography
+                variant="h4"
+                marginBottom={9}
+                className={classes.switchPage}
+                onClick={handlePageSwitch}
+              >
+                Do not have an account yet? Sign up
+              </Typography>
+              <Box class={classes.form}>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Email"
+                  id="email"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                ></TextField>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Password"
+                  id="password"
+                  type="password"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                ></TextField>
+
+                <Button
+                  className={classes.btn}
+                  sx={{
+                    marginTop: "6rem",
+                    backgroundColor: "#04111c",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "#04111c",
+                    },
+                  }}
+                >
+                  Login
+                </Button>
+              </Box>
+            </Box>
+            <Box class={classes.imageContainer}></Box>
+          </Box>
+        </Container>
+      </Box>
+    );
+  }
 };
