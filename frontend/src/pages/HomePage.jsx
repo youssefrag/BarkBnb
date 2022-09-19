@@ -5,6 +5,7 @@ import heroGalleryPictures from "../assets/hero-pictures";
 import { Typography, Box, Container, Button } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
+import { style } from "@mui/system";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) =>
       paddingTop: "10rem",
       display: "flex",
       justifyContent: "space-between",
-      // alignItems: "center",
+      alignItems: "center",
     },
     heroMainainInfo: {
       width: "50%",
@@ -63,6 +64,13 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+const dimensions = {
+  heroImg: {
+    height: "400px",
+    width: "auto",
+  },
+};
+
 export const HomePage = () => {
   const classes = useStyles();
 
@@ -89,19 +97,10 @@ export const HomePage = () => {
               </Box>
             </Box>
             <Box className={classes.heroGallery}>
-              <Box className={classes.img1Container}>
-                <img
-                  src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-                  className={classes.img1}
-                />
-              </Box>
-              <Box className={classes.img2Container}>
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8WcE8jTid4IA_XabKaDEAaHiMFldP_ynWfg&usqp=CAU"
-                  className={classes.img2}
-                />
-                {/* */}
-              </Box>
+              <img
+                src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
+                style={dimensions.heroImg}
+              />
             </Box>
           </Box>
         </Container>
