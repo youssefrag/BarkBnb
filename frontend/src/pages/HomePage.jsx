@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Typography, Box, Container, Button } from "@mui/material";
+import { Typography, Box, Container, Button, Modal } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
 
@@ -31,45 +31,36 @@ const useStyles = makeStyles((theme) =>
         border: "2px white",
       },
     },
-    heroGallery: {
-      position: "relative",
-    },
-    img1Container: {
-      position: "relative",
-      overflow: "hidden",
-      width: "40rem",
-      transform: "translate(-45rem, -20rem)",
-      position: "absolute",
-      zIndex: "1",
-    },
-    img1: {
-      transform: "translate(-30rem, 5rem)",
-    },
-    img2Container: {
-      position: "relative",
-      overflow: "hidden",
-      height: "300rem",
-      width: "500rem",
-      transform: "translate(-50rem, 25rem)",
-      position: "absolute",
-      zIndex: "2",
-    },
-    img2: {
-      transform: "scale(2,2)",
-      transform: "translate(0, 0)",
+
+    howItWorksBtns: {
+      display: "flex",
+      gap: "4rem",
     },
   })
 );
 
-const dimensions = {
-  heroImg: {
-    height: "400px",
-    width: "auto",
-  },
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
 };
 
 export const HomePage = () => {
   const classes = useStyles();
+
+  const [openOwner, setOpenOwner] = useState(false);
+  const handleOpenOwner = () => setOpenOwner(true);
+  const handleCloseOwner = () => setOpenOwner(false);
+
+  const [openSitter, setOpenSitter] = useState(false);
+  const handleOpenSitter = () => setOpenSitter(true);
+  const handleCloseSitter = () => setOpenSitter(false);
 
   return (
     <Box className={classes.home} marginTop={8}>
@@ -96,13 +87,13 @@ export const HomePage = () => {
             <Box className={classes.heroGallery}>
               <img
                 src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-                style={dimensions.heroImg}
+                style={{ height: "40rem" }}
               />
             </Box>
           </Box>
         </Container>
       </Box>
-      <Box className={classes.howItWorks} marginTop={7}>
+      <Box className={classes.howItWorks} marginTop={7} marginBottom={6}>
         <Container className={classes.heroContainer} maxWidth="xl">
           <Typography variant="h2" color="primary">
             How it works
@@ -110,6 +101,46 @@ export const HomePage = () => {
           <Typography variant="h1" marginTop={6}>
             Get started with a few simple steps!
           </Typography>
+          <Box className={classes.howItWorksBtns} marginTop={7}>
+            <Button size="large" variant="contained" onClick={handleOpenOwner}>
+              Dog Owner
+            </Button>
+            <Modal
+              open={openOwner}
+              onClose={handleCloseOwner}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Text in a modal
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula.
+                </Typography>
+              </Box>
+            </Modal>
+            <Button size="large" variant="contained" onClick={handleOpenSitter}>
+              Dog Sitter
+            </Button>
+            <Modal
+              open={openSitter}
+              onClose={handleCloseSitter}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Text in a modal
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula.
+                </Typography>
+              </Box>
+            </Modal>
+          </Box>
         </Container>
       </Box>
     </Box>
