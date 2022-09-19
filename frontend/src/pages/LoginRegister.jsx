@@ -103,6 +103,19 @@ export const LoginRegister = () => {
 
   // Handle Register Data
 
+  const [userRegister, setUserRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleRegisterChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserRegister((prev) => ({ ...userRegister, [name]: value }));
+  };
+
   const [page, setPage] = useState("login");
 
   const handlePageSwitch = () => {
@@ -141,40 +154,48 @@ export const LoginRegister = () => {
                 <TextField
                   fullWidth
                   placeholder="Enter Full Name"
-                  id="name"
+                  name="name"
                   class={classes.field}
                   InputProps={{
                     style: styling.resize,
                   }}
+                  value={userRegister.name}
+                  onChange={handleRegisterChange}
                 ></TextField>
                 <TextField
                   fullWidth
                   placeholder="Enter Email"
-                  id="email"
+                  name="email"
                   class={classes.field}
                   InputProps={{
                     style: styling.resize,
                   }}
+                  value={userRegister.email}
+                  onChange={handleRegisterChange}
                 ></TextField>
                 <TextField
                   fullWidth
                   placeholder="Enter Password"
-                  id="password"
+                  name="password"
                   type="password"
                   class={classes.field}
                   InputProps={{
                     style: styling.resize,
                   }}
+                  value={userRegister.password}
+                  onChange={handleRegisterChange}
                 ></TextField>
                 <TextField
                   fullWidth
                   placeholder="Confirm Password"
-                  id="confirm-password"
+                  name="confirmPassword"
                   type="password"
                   class={classes.field}
                   InputProps={{
                     style: styling.resize,
                   }}
+                  value={userRegister.confirmPassword}
+                  onChange={handleRegisterChange}
                 ></TextField>
 
                 <Button
@@ -186,6 +207,9 @@ export const LoginRegister = () => {
                       backgroundColor: "#fff",
                       color: "#04111c",
                     },
+                  }}
+                  onClick={() => {
+                    console.log(userRegister);
                   }}
                 >
                   Sign Up
