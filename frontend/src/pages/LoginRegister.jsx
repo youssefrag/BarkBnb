@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/userContext";
 
-import {
-  Button,
-  Typography,
-  Box,
-  Container,
-  TextField,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-} from "@mui/material";
+import { Button, Typography, Box, Container, TextField } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-
-// import picture from "../assets/images/login-singup.png";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -67,7 +57,54 @@ const styling = {
 };
 
 export const LoginRegister = () => {
+  let navigate = useNavigate();
+
+  const {
+    userContextName,
+    setName,
+    userContextEmail,
+    setUserEmail,
+    isUserLoggedIn,
+    setUserLoggedIn,
+  } = useContext(UserContext);
+
+  // Handle Login data
+
+  const [userLogin, setUserLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleLoginChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserLogin((prev) => ({ ...userLogin, [name]: value }));
+  };
+
+  const handleLoginSubmit = async () => {
+    const { email, password } = userLogin;
+    if (!email || !password) {
+      alert("Empty Values!");
+      return;
+    }
+    let response = await fetch("http://127.0.0.1:8000/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userLogin),
+    });
+    let result = await response.json();
+    setName(result.first_name);
+    setUserEmail(result.email);
+    setUserLoggedIn(true);
+    navigate("/profiles");
+  };
+
+  // Handle Register Data
+
   const [page, setPage] = useState("login");
+
   const handlePageSwitch = () => {
     if (page === "login") {
       setPage("register");
@@ -77,8 +114,6 @@ export const LoginRegister = () => {
   };
 
   const classes = useStyles();
-
-  console.log(page);
 
   if (page === "register") {
     return (
@@ -188,21 +223,25 @@ export const LoginRegister = () => {
                 <TextField
                   fullWidth
                   placeholder="Enter Email"
-                  id="email"
+                  name="email"
                   class={classes.field}
                   InputProps={{
                     style: styling.resize,
                   }}
+                  value={userLogin.email}
+                  onChange={handleLoginChange}
                 ></TextField>
                 <TextField
                   fullWidth
                   placeholder="Enter Password"
-                  id="password"
+                  name="password"
                   type="password"
                   class={classes.field}
                   InputProps={{
                     style: styling.resize,
                   }}
+                  value={userLogin.password}
+                  onChange={handleLoginChange}
                 ></TextField>
 
                 <Button
@@ -216,6 +255,7 @@ export const LoginRegister = () => {
                       color: "#04111c",
                     },
                   }}
+                  onClick={handleLoginSubmit}
                 >
                   Login
                 </Button>
