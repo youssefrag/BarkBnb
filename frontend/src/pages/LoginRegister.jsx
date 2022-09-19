@@ -51,8 +51,22 @@ const useStyles = makeStyles((theme) =>
     btn: {
       backgroundColor: "#04111c",
     },
+    field: {
+      backgroundColor: "#fff",
+      width: "100%",
+      borderRadius: "9px",
+    },
+    // resize: {
+    //   fontSize: "50rem",
+    // },
   })
 );
+
+const styling = {
+  resize: {
+    fontSize: "50rem",
+  },
+};
 
 export const LoginRegister = () => {
   const [page, setPage] = useState("login");
@@ -77,32 +91,42 @@ export const LoginRegister = () => {
               Already have an account? Login
             </Typography>
             <Box class={classes.form}>
-              <TextField></TextField>
-              <TextField></TextField>
-              <TextField></TextField>
-              <TextField></TextField>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Where did you hear about us?
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={hearAboutUs}
-                    label="Where did you hear about us?"
-                    onChange={handleChangeHearAboutUs}
-                  >
-                    <MenuItem value={"friendsFajmiy"}>
-                      Friends and Family
-                    </MenuItem>
-                    <MenuItem value={"youtube"}>YouTube video</MenuItem>
-                    <MenuItem value={"facebook"}>Facebook Ad</MenuItem>
-                    <MenuItem value={"podcast"}>Podcast</MenuItem>
-                    <MenuItem value={"other"}>Other</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+              <TextField
+                fullWidth
+                placeholder="Enter name"
+                id="name"
+                class={classes.field}
+                InputProps={{
+                  style: { fontSize: "2rem" },
+                }}
+              ></TextField>
+              <TextField
+                fullWidth
+                id="email"
+                class={classes.field}
+                InputProps={{
+                  style: { fontSize: "2rem" },
+                }}
+              ></TextField>
+              <TextField
+                fullWidth
+                id="password"
+                type="password"
+                class={classes.field}
+                InputProps={{
+                  style: { fontSize: "2rem" },
+                }}
+              ></TextField>
+              <TextField
+                fullWidth
+                id="confirm-password"
+                type="password"
+                class={classes.field}
+                InputProps={{
+                  style: { fontSize: "2rem" },
+                }}
+              ></TextField>
+
               <Button
                 className={classes.btn}
                 sx={{
