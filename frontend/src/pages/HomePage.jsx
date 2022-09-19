@@ -127,13 +127,62 @@ export const HomePage = () => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Text in a modal
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
+                <Box className={classes.stepBox}>
+                  <Box className={classes.stepNumBox} paddingLeft={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      01
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Login or Sign up!</Typography>
+                    <Typography variant="h3">
+                      In order to get started, please create an account
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box className={classes.stepBox}>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Create a dog profile</Typography>
+                    <Typography variant="h3">
+                      Create a profile for your dog and fill out the required
+                      information
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepNumBox} paddingRight={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      02
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box className={classes.stepBox}>
+                  <Box className={classes.stepNumBox} paddingLeft={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      03
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Post sitting</Typography>
+                    <Typography variant="h3">
+                      Create new sitting poriving relevant information like
+                      dates and location
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box className={classes.stepBox} marginBottom={0}>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Accept offer</Typography>
+                    <Typography variant="h3">
+                      When dog sitters make offers on the sitting you have
+                      posted, you may accept and offer and pay the sitter in
+                      cash when he comes to pick up dog upon sitting start day
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepNumBox} paddingRight={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      04
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
             </Modal>
             <Button size="large" variant="contained" onClick={handleOpenSitter}>
