@@ -69,6 +69,12 @@ export const theme = createTheme({
       fontSize: "2rem",
       lineHeight: 1.6,
     },
+    stepNum: {
+      fontFamily: "Rubik, sans-serif",
+      fontSize: "9rem",
+      fontWeight: 700,
+      color: "#adb5bd",
+    },
     btn: {
       fontSize: "1.4rem",
       fontWeight: 600,

@@ -34,7 +34,21 @@ const useStyles = makeStyles((theme) =>
 
     howItWorksBtns: {
       display: "flex",
-      gap: "4rem",
+      gap: "3.2rem",
+    },
+    stepBox: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: "7rem",
+    },
+    // stepNumBox: {
+    //   flex: "1",
+    //   display: "flex",
+    //   justifyContent: "center",
+    // },
+    stepText: {
+      width: "40rem",
     },
   })
 );
@@ -44,11 +58,12 @@ const modalStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "90rem",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: "30px",
+  padding: "4rem",
 };
 
 export const HomePage = () => {
@@ -131,13 +146,64 @@ export const HomePage = () => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Text in a modal
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
+                <Box className={classes.stepBox}>
+                  <Box className={classes.stepNumBox} paddingLeft={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      01
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Login or Sign up!</Typography>
+                    <Typography variant="h3">
+                      In order to get started, please create an account
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box className={classes.stepBox}>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">
+                      Browse available sitting
+                    </Typography>
+                    <Typography variant="h3">
+                      Filter through available sittings based on dates and
+                      location
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepNumBox} paddingRight={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      02
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box className={classes.stepBox}>
+                  <Box className={classes.stepNumBox} paddingLeft={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      03
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Make an offer!</Typography>
+                    <Typography variant="h3">
+                      Make an offer to the dog owner, naming the price you would
+                      like to charge!
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box className={classes.stepBox} marginBottom={0}>
+                  <Box className={classes.stepText}>
+                    <Typography variant="h2">Happy sitting</Typography>
+                    <Typography variant="h3">
+                      If offer is accepted by dog owner, you pickup the dog at
+                      the agreed date and time with payment made in cash upon
+                      arrival
+                    </Typography>
+                  </Box>
+                  <Box className={classes.stepNumBox} paddingRight={7}>
+                    <Typography id="modal-modal-title" variant="stepNum">
+                      04
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
             </Modal>
           </Box>
