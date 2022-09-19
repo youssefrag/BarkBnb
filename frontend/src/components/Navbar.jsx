@@ -11,7 +11,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) =>
   createStyles({
     tool: {
-      backgroundColor: theme.palette.primary.light3,
+      backgroundColor: theme.palette.primary.light2,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -35,13 +35,6 @@ const useStyles = makeStyles((theme) =>
       gap: "2.4rem",
       paddingRight: "1.8rem",
     },
-    // navBtn: {
-    //   color: "#343a40",
-    //   "&:hover": {
-    //     color: "#14538a",
-    //     border: "none",
-    //   },
-    // },
   })
 );
 
@@ -121,7 +114,7 @@ export const Navbar = () => {
             <Button
               size="medium"
               variant="contained"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/login-register")}
             >
               Login/Register
             </Button>

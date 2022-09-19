@@ -18,6 +18,7 @@ import { theme } from "./theme";
 import Cookies from "js-cookie";
 
 import { Button } from "@mui/material";
+import { LoginRegister } from "./pages/LoginRegister";
 
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -45,8 +46,8 @@ function App() {
               />
               <Route path="/register" element={<RegistrationPage />} />
               <Route
-                path="/login"
-                element={isUserLoggedIn ? <HomePage /> : <LoginPage />}
+                path="/login-register"
+                element={isUserLoggedIn ? <HomePage /> : <LoginRegister />}
               />
               <Route
                 path="/edit-account"

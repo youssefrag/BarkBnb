@@ -7,10 +7,11 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: "#14538a",
-      light2: "#a1bad0",
-      light3: "#d0dde8",
+      light1: "#a1bad0",
+      light2: "#d0dde8",
       dark1: "#0e3a61",
       dark2: "#082137",
+      dark3: "#04111c",
     },
   },
   components: {
@@ -69,6 +70,14 @@ export const theme = createTheme({
       fontSize: "2rem",
       lineHeight: 1.6,
     },
+    h4: {
+      fontSize: "1.6rem",
+      lineHeight: 1.6,
+    },
+    h5: {
+      fontSize: "1.4rem",
+      lineHeight: 1.6,
+    },
     stepNum: {
       fontFamily: "Rubik, sans-serif",
       fontSize: "9rem",
@@ -93,6 +102,7 @@ export const theme = createTheme({
     "8rem",
     "9.6rem",
     "12.8rem",
+    "14.2rem",
   ],
   shadows: ["none"],
 });
