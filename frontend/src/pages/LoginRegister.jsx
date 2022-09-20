@@ -107,6 +107,7 @@ export const LoginRegister = () => {
 
   const [userRegister, setUserRegister] = useState({
     name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -185,6 +186,17 @@ export const LoginRegister = () => {
                     style: styling.resize,
                   }}
                   value={userRegister.name}
+                  onChange={handleRegisterChange}
+                ></TextField>
+                <TextField
+                  fullWidth
+                  placeholder="Enter username"
+                  name="username"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                  value={userRegister.username}
                   onChange={handleRegisterChange}
                 ></TextField>
                 <TextField

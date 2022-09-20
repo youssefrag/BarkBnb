@@ -53,6 +53,12 @@ def loginUser(request):
     username = user.username
     user = authenticate(request, username=username, password=password)
     
+    print('This is the username:', username)
+    print('This is the password:', password)
+    print('This is the user:', user)
+
+    
+
     if user is not None:
         login(request, user)
         serializer = UserSerializer(user, many=False)
@@ -69,7 +75,7 @@ def registerUser(request):
     try:
         user = User.objects.create(
             first_name=data['name'],
-            username=data['name'],
+            username=data['username'],
             email=data['email'],
             password=data['password']
         )
