@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) =>
       width: "100%",
       display: "grid",
       gridTemplateColumns: "2fr 1fr",
+      overflow: "hidden",
     },
     information: {
       padding: "4rem",

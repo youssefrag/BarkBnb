@@ -1,110 +1,135 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { makeStyles } from "@mui/styles";
-import { Typography, TextField, Button } from '@mui/material';
+import { Typography, TextField, Button, Container, Box } from "@mui/material";
 
-import { UserContext } from '../context/userContext';
-import { useContext } from 'react';
-
+import { UserContext } from "../context/userContext";
+import { useContext } from "react";
 
 const useStyles = makeStyles({
-    root: {
-        marginTop:'100px'
-    }
-})
+  //   field: {
+  //     // backgroundColor: "#fff",
+  //     width: "100%",
+  //     borderRadius: "9px",
+  //   },
+});
+
+const styling = {
+  resize: {
+    fontSize: "2rem",
+  },
+};
 
 export const EditAccount = () => {
+  const classes = useStyles();
 
-    const classes = useStyles()
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
+  const { userContextName, userContextEmail } = useContext(UserContext);
 
-    const { userContextName, userContextEmail } = useContext(UserContext);
+  let [profile, setProfile] = useState({
+    name: userContextName,
+    email: userContextEmail,
+    bio: "",
+    profile_image: null,
+  });
 
-    let [profile, setProfile] = useState({
-        name: userContextName,
-        email: userContextEmail,
-        bio: '',
-        profile_image: null,
-    })
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setProfile((prev) => ({ ...profile, [name]: value }));
+  };
 
-    const handleChange = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        setProfile(prev => ({...profile, [name]: value}))
-    }
+  const handlePictureUpload = (e) => {
+    const name = e.target.name;
+    const file = e.target.files[0];
+    setProfile((prev) => ({ ...profile, [name]: file }));
+  };
 
-    const handlePictureUpload = (e) => {
-        const name = e.target.name
-        const file = e.target.files[0]
-        setProfile(prev => ({...profile, [name]: file}))
-    }
+  const handleSubmit = () => {
+    const profileUpdateData = new FormData();
+    profileUpdateData.append("name", profile.name);
+    profileUpdateData.append("email", profile.email);
+    profileUpdateData.append("bio", profile.bio);
+    profileUpdateData.append(
+      "profile_image",
+      profile.profile_image,
+      profile.profile_image.name
+    );
 
-    const handleSubmit = () => {
-        const profileUploadData = new FormData()
-        profileUploadData.append('name', profile.name)
-        profileUploadData.append('email', profile.email)
-        profileUploadData.append('bio', profile.bio)
-        profileUploadData.append('profile_image', profile.profile_image, profile.profile_image.name)
+    fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
+      method: "POST",
+      body: profileUpdateData,
+    });
+  };
 
-        fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
-            method: "POST",
-            body: profileUploadData
-        })
-    }
-
-    return (
-        <div className={classes.root}>
-            <Typography
-                variant='h3'
-            >
-                Edit Account
-            </Typography>
-            <form
-                id='edit-account'
-                noValidate
-                autoComplete='off'
-                enctype="multipart/form-data"
-            >
-            <TextField
-                type="text"
-                label="Name"
-                name='name'
-                color="secondary"
-                required
-                value={profile.name}
-                onChange={handleChange}
-                // className={classes.field}
+  return (
+    <Box marginTop={12}>
+      <Container className={classes.heroContainer} marginTop={9} maxWidth="lg">
+        <Typography
+          Typography
+          variant="h2"
+          color="primary.dark3"
+          marginBottom={4}
+        >
+          Edit Account
+        </Typography>
+        <form
+          id="edit-account"
+          noValidate
+          autoComplete="off"
+          enctype="multipart/form-data"
+        >
+          <TextField
+            focused
+            fullwidth
+            type="text"
+            label="Name"
+            name="name"
+            color="primary"
+            class={classes.field}
+            InputProps={{
+              style: styling.resize,
+            }}
+            InputLabelProps={{
+              style: { color: "#000" },
+            }}
+            required
+            value={profile.name}
+            onChange={handleChange}
+          />
+          <TextField
+            type="text"
+            label="Bio"
+            name="bio"
+            color="primary"
+            InputProps={{
+              style: styling.resize,
+            }}
+            InputLabelProps={{
+              style: { color: "#000", fontSize: "2rem" },
+            }}
+            required
+            value={profile.bio}
+            onChange={handleChange}
+            // className={classes.field}
+          />
+          <label>
+            Profile Image
+            <input
+              type="file"
+              name="profile_image"
+              onChange={handlePictureUpload}
             />
-            <TextField
-                type="text"
-                label="Bio"
-                name='bio'
-                color="secondary"
-                required
-                value={profile.bio}
-                onChange={handleChange}
-                // className={classes.field}
-            />
-            <label>
-                Profile Image
-                <input 
-                    type="file"
-                    name='profile_image'
-                    onChange={handlePictureUpload}
-                />
-            </label>
+          </label>
 
-            <Button
-                    variant='contained' 
-                    size='large'
-                    onClick={handleSubmit}
-                >
-                    Update Profile!
-                </Button>
-            </form>
-        </div>
-    )
-}   
+          <Button variant="contained" size="large" onClick={handleSubmit}>
+            Update Profile!
+          </Button>
+        </form>
+      </Container>
+    </Box>
+  );
+};
