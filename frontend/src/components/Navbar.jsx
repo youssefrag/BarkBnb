@@ -81,17 +81,24 @@ export const Navbar = () => {
 
   if (isUserLoggedIn === true) {
     return (
-      <AppBar className={classes.root}>
-        <Toolbar>
-          <Typography variant="h4">Welcome {userContextName}</Typography>
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-            onClick={handleLogout}
-          >
-            Logout
-          </Button>
+      <AppBar elevation={0}>
+        <Toolbar className={classes.tool}>
+          <Box className={classes.logoContainer} onClick={() => navigate("/")}>
+            <Typography variant="h2">Bark</Typography>
+            <PetsIcon color="primary" sx={overrideTheme.logoIcon} />
+            <Typography variant="h2">Bnb</Typography>
+          </Box>
+          <Box className={classes.btnContainer}>
+            <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
+              How it works
+            </Button>
+            <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
+              Sittings
+            </Button>
+            <Button size="medium" variant="contained" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
     );

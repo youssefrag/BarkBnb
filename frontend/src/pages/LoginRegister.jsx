@@ -116,6 +116,26 @@ export const LoginRegister = () => {
     setUserRegister((prev) => ({ ...userRegister, [name]: value }));
   };
 
+  const handleRegisterSubmit = async () => {
+    const { name, email, password, confirmPassword } = userRegister;
+    if (!name || !email || !password || !confirmPassword) {
+      alert("Empty Values");
+      return;
+    }
+    let response = await fetch("http://127.0.0.1:8000/api/users/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userRegister),
+    });
+    let result = await response.json();
+    setName(name);
+    setUserEmail(email);
+    setUserLoggedIn(true);
+    navigate("/edit-account");
+  };
+
   const [page, setPage] = useState("login");
 
   const handlePageSwitch = () => {
@@ -208,9 +228,7 @@ export const LoginRegister = () => {
                       color: "#04111c",
                     },
                   }}
-                  onClick={() => {
-                    console.log(userRegister);
-                  }}
+                  onClick={handleRegisterSubmit}
                 >
                   Sign Up
                 </Button>
