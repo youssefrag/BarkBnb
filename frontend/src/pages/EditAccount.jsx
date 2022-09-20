@@ -2,19 +2,29 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { makeStyles } from "@mui/styles";
+import { makeStyles, createStyles } from "@mui/styles";
 import { Typography, TextField, Button, Container, Box } from "@mui/material";
 
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
 
-const useStyles = makeStyles({
-  //   field: {
-  //     // backgroundColor: "#fff",
-  //     width: "100%",
-  //     borderRadius: "9px",
-  //   },
-});
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    mainBox: {
+      backgroundColor: theme.palette.primary.light1,
+      borderRadius: "11px",
+      boxShadow: "0 2.4rem 4.8rem rgba( 0,0,0,0.15)",
+      height: "50rem",
+      width: "100%",
+      overflow: "hidden",
+      padding: "5rem",
+    },
+    textfields: {
+      display: "flex",
+      gap: "3.8rem",
+    },
+  })
+);
 
 const styling = {
   resize: {
@@ -68,67 +78,81 @@ export const EditAccount = () => {
   return (
     <Box marginTop={12}>
       <Container className={classes.heroContainer} marginTop={9} maxWidth="lg">
-        <Typography
-          Typography
-          variant="h2"
-          color="primary.dark3"
-          marginBottom={4}
-        >
-          Edit Account
-        </Typography>
-        <form
-          id="edit-account"
-          noValidate
-          autoComplete="off"
-          enctype="multipart/form-data"
-        >
-          <TextField
-            focused
-            fullwidth
-            type="text"
-            label="Name"
-            name="name"
-            color="primary"
-            class={classes.field}
-            InputProps={{
-              style: styling.resize,
-            }}
-            InputLabelProps={{
-              style: { color: "#000" },
-            }}
-            required
-            value={profile.name}
-            onChange={handleChange}
-          />
-          <TextField
-            type="text"
-            label="Bio"
-            name="bio"
-            color="primary"
-            InputProps={{
-              style: styling.resize,
-            }}
-            InputLabelProps={{
-              style: { color: "#000", fontSize: "2rem" },
-            }}
-            required
-            value={profile.bio}
-            onChange={handleChange}
-            // className={classes.field}
-          />
-          <label>
-            Profile Image
-            <input
-              type="file"
-              name="profile_image"
-              onChange={handlePictureUpload}
-            />
-          </label>
+        <Box className={classes.mainBox}>
+          <Typography
+            Typography
+            variant="h2"
+            color="primary.dark3"
+            marginBottom={8}
+          >
+            Edit Account
+          </Typography>
+          <form
+            id="edit-account"
+            noValidate
+            autoComplete="off"
+            enctype="multipart/form-data"
+          >
+            <Box marginBottom={8} className={classes.textfields}>
+              <TextField
+                focused
+                fullwidth
+                type="text"
+                label="Name"
+                name="name"
+                color="primary"
+                class={classes.field}
+                InputProps={{
+                  style: styling.resize,
+                }}
+                InputLabelProps={{
+                  style: { color: "#000" },
+                }}
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: "9px",
+                }}
+                required
+                value={profile.name}
+                onChange={handleChange}
+              />
+              <TextField
+                type="text"
+                label="Bio"
+                name="bio"
+                color="primary"
+                InputProps={{
+                  style: styling.resize,
+                }}
+                InputLabelProps={{
+                  style: { color: "#000", fontSize: "2rem" },
+                }}
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: "9px",
+                }}
+                required
+                value={profile.bio}
+                onChange={handleChange}
+                // className={classes.field}
+              />
+            </Box>
+            <Box>
+              <label style={{ fontSize: "2rem" }}>
+                Profile Image
+                <input
+                  type="file"
+                  name="profile_image"
+                  onChange={handlePictureUpload}
+                />
+              </label>
 
-          <Button variant="contained" size="large" onClick={handleSubmit}>
-            Update Profile!
-          </Button>
-        </form>
+              <Button variant="contained" size="large" onClick={handleSubmit}>
+                Update Profile!
+              </Button>
+            </Box>
+          </form>
+        </Box>
       </Container>
     </Box>
   );

@@ -65,10 +65,11 @@ def loginUser(request):
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
+    print(data)
     try:
         user = User.objects.create(
             first_name=data['name'],
-            username=data['username'],
+            username=data['name'],
             email=data['email'],
             password=data['password']
         )
@@ -79,7 +80,7 @@ def registerUser(request):
 
         return Response(serializer.data)
     except:
-        message = {'detail': 'User with this email already exists'}
+        message = {'detail': 'An error has occured during registration'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 

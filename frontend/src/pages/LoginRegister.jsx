@@ -96,10 +96,11 @@ export const LoginRegister = () => {
       body: JSON.stringify(userLogin),
     });
     let result = await response.json();
-    setName(result.first_name);
-    setUserEmail(result.email);
-    setUserLoggedIn(true);
-    navigate("/profiles");
+    console.log(result);
+    // setName(result.first_name);
+    // setUserEmail(result.email);
+    // setUserLoggedIn(true);
+    // navigate("/profiles");
   };
 
   // Handle Register Data
@@ -131,10 +132,11 @@ export const LoginRegister = () => {
       body: JSON.stringify(userRegister),
     });
     let result = await response.json();
-    setName(name);
-    setUserEmail(email);
-    setUserLoggedIn(true);
-    navigate("/edit-account");
+    console.log(result);
+    // setName(name);
+    // setUserEmail(email);
+    // setUserLoggedIn(true);
+    // navigate("/edit-account");
   };
 
   const [page, setPage] = useState("login");
