@@ -46,18 +46,17 @@ def loginUser(request):
 
         try:
             user = User.objects.get(email=email)
+            print('user before authentication', user)
         except:
             message = {'detail': 'email does not match a user'}
             return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
     username = user.username
     user = authenticate(request, username=username, password=password)
-    
+
     print('This is the username:', username)
     print('This is the password:', password)
     print('This is the user:', user)
-
-    
 
     if user is not None:
         login(request, user)
@@ -67,6 +66,7 @@ def loginUser(request):
     else:
         message = {'detail': 'Username or password is incorrect'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 def registerUser(request):
