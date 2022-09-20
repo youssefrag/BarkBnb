@@ -6,9 +6,7 @@ import { UserContextProvider } from "./context/userContext";
 import "./App.css";
 
 import { Navbar } from "./components/Navbar";
-import { RegistrationPage } from "./pages/RegistrationPage";
 import { EditAccount } from "./pages/EditAccount";
-import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 
@@ -42,9 +40,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route
                 path="/profiles/"
-                element={isUserLoggedIn ? <ProfilesPage /> : <LoginPage />}
+                element={isUserLoggedIn ? <ProfilesPage /> : <LoginRegister />}
               />
-              <Route path="/register" element={<RegistrationPage />} />
               <Route
                 path="/login-register"
                 element={isUserLoggedIn ? <HomePage /> : <LoginRegister />}
