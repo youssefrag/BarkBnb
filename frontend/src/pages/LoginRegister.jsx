@@ -132,11 +132,13 @@ export const LoginRegister = () => {
       body: JSON.stringify(userRegister),
     });
     let result = await response.json();
-    console.log(result);
-    // setName(name);
-    // setUserEmail(email);
-    // setUserLoggedIn(true);
-    // navigate("/edit-account");
+    console.log(result.id);
+    if (result.id) {
+      setName(name);
+      setUserEmail(email);
+      setUserLoggedIn(true);
+      navigate("/edit-account");
+    }
   };
 
   const [page, setPage] = useState("login");
