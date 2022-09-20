@@ -17,11 +17,23 @@ const useStyles = makeStyles((theme) =>
       height: "50rem",
       width: "100%",
       overflow: "hidden",
-      padding: "5rem",
+      // padding: "5rem",
+      display: "grid",
+      gridTemplateColumns: "2fr 1fr",
+    },
+    information: {
+      padding: "4rem",
     },
     textfields: {
       display: "flex",
-      gap: "3.8rem",
+      gap: "10rem",
+    },
+    imageContainer: {
+      backgroundImage: "url('/images/dalmatian.png')",
+
+      backgroundSize: "cover",
+      width: "auto",
+      backgroundPosition: "-12rem",
     },
   })
 );
@@ -72,6 +84,8 @@ export const EditAccount = () => {
     fetch(`http://127.0.0.1:8000/api/profile-edit/${userContextEmail}`, {
       method: "POST",
       body: profileUpdateData,
+    }).then(() => {
+      navigate("/profiles");
     });
   };
 
@@ -79,79 +93,94 @@ export const EditAccount = () => {
     <Box marginTop={12}>
       <Container className={classes.heroContainer} marginTop={9} maxWidth="lg">
         <Box className={classes.mainBox}>
-          <Typography
-            Typography
-            variant="h2"
-            color="primary.dark3"
-            marginBottom={8}
-          >
-            Edit Account
-          </Typography>
-          <form
-            id="edit-account"
-            noValidate
-            autoComplete="off"
-            enctype="multipart/form-data"
-          >
-            <Box marginBottom={8} className={classes.textfields}>
-              <TextField
-                focused
-                fullwidth
-                type="text"
-                label="Name"
-                name="name"
-                color="primary"
-                class={classes.field}
-                InputProps={{
-                  style: styling.resize,
-                }}
-                InputLabelProps={{
-                  style: { color: "#000" },
-                }}
-                sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: "9px",
-                }}
-                required
-                value={profile.name}
-                onChange={handleChange}
-              />
-              <TextField
-                type="text"
-                label="Bio"
-                name="bio"
-                color="primary"
-                InputProps={{
-                  style: styling.resize,
-                }}
-                InputLabelProps={{
-                  style: { color: "#000", fontSize: "2rem" },
-                }}
-                sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: "9px",
-                }}
-                required
-                value={profile.bio}
-                onChange={handleChange}
-                // className={classes.field}
-              />
-            </Box>
-            <Box>
-              <label style={{ fontSize: "2rem" }}>
-                Profile Image
-                <input
-                  type="file"
-                  name="profile_image"
-                  onChange={handlePictureUpload}
+          <Box className={classes.information}>
+            <Typography
+              Typography
+              variant="h2"
+              color="primary.dark3"
+              marginBottom={8}
+            >
+              Edit Account
+            </Typography>
+            <form
+              id="edit-account"
+              noValidate
+              autoComplete="off"
+              enctype="multipart/form-data"
+            >
+              <Box marginBottom={8} className={classes.textfields}>
+                <TextField
+                  focused
+                  fullwidth
+                  type="text"
+                  label="Name"
+                  name="name"
+                  color="primary"
+                  class={classes.field}
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                  InputLabelProps={{
+                    style: { color: "#000" },
+                  }}
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: "9px",
+                  }}
+                  required
+                  value={profile.name}
+                  onChange={handleChange}
                 />
-              </label>
+                <TextField
+                  type="text"
+                  label="Bio"
+                  name="bio"
+                  color="primary"
+                  InputProps={{
+                    style: styling.resize,
+                  }}
+                  InputLabelProps={{
+                    style: { color: "#000", fontSize: "2rem" },
+                  }}
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: "9px",
+                  }}
+                  required
+                  value={profile.bio}
+                  onChange={handleChange}
+                  // className={classes.field}
+                />
+              </Box>
+              <Box>
+                <label style={{ fontSize: "2rem" }}>
+                  Profile Image
+                  <input
+                    type="file"
+                    name="profile_image"
+                    onChange={handlePictureUpload}
+                  />
+                </label>
 
-              <Button variant="contained" size="large" onClick={handleSubmit}>
-                Update Profile!
-              </Button>
-            </Box>
-          </form>
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    color: "#fff",
+                    backgroundColor: "#04111c",
+                    "&:hover": {
+                      backgroundColor: "#fff",
+                      color: "#04111c",
+                    },
+                  }}
+                  onClick={handleSubmit}
+                >
+                  Update Profile!
+                </Button>
+              </Box>
+            </form>
+          </Box>
+          <Box className={classes.imageContainer}></Box>
         </Box>
       </Container>
     </Box>

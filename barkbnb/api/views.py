@@ -36,7 +36,6 @@ def getRoutes(request):
 
     return Response(routes)
 
-# @csrf_exempt
 @api_view(['POST'])
 def loginUser(request):
     data = request.data
@@ -52,13 +51,7 @@ def loginUser(request):
             return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
     username = user.username.lower()
-    # user = authenticate(request, username=username, password=password)
 
-    print('This is the username:', username)
-    print('This is the password:', password)
-    print('This is the user:', user)
-
-    # if user is not None:
     if password == user.password:
         login(request, user)
         serializer = UserSerializer(user, many=False)

@@ -95,7 +95,19 @@ export const Navbar = () => {
             <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
               Sittings
             </Button>
-            <Button size="medium" variant="contained" onClick={handleLogout}>
+            <Button
+              size="medium"
+              variant="contained"
+              onClick={handleLogout}
+              sx={{
+                backgroundColor: "#04111c",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#04111c",
+                },
+              }}
+            >
               Logout
             </Button>
           </Box>
@@ -122,6 +134,14 @@ export const Navbar = () => {
               size="medium"
               variant="contained"
               onClick={() => navigate("/login-register")}
+              sx={{
+                backgroundColor: "#04111c",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#04111c",
+                },
+              }}
             >
               Login/Register
             </Button>

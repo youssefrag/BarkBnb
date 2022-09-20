@@ -96,11 +96,12 @@ export const LoginRegister = () => {
       body: JSON.stringify(userLogin),
     });
     let result = await response.json();
-    console.log(result);
-    // setName(result.first_name);
-    // setUserEmail(result.email);
-    // setUserLoggedIn(true);
-    // navigate("/profiles");
+    if (result.id) {
+      setName(result.first_name);
+      setUserEmail(result.email);
+      setUserLoggedIn(true);
+      navigate("/");
+    }
   };
 
   // Handle Register Data
@@ -123,6 +124,9 @@ export const LoginRegister = () => {
     const { name, email, password, confirmPassword } = userRegister;
     if (!name || !email || !password || !confirmPassword) {
       alert("Empty Values");
+      return;
+    } else if (password !== confirmPassword) {
+      alert("Passwords are not matching");
       return;
     }
     let response = await fetch("http://127.0.0.1:8000/api/users/create", {
@@ -163,7 +167,7 @@ export const LoginRegister = () => {
           maxWidth="lg"
         >
           <Box className={classes.mainBox}>
-            <Box item xs={7} className={classes.information}>
+            <Box item className={classes.information}>
               <Typography variant="h2" color="primary.dark3" marginBottom={4}>
                 Create Account
               </Typography>
