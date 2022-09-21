@@ -6,12 +6,28 @@ import {
   CardMedia,
   Button,
   Typography,
+  Box,
 } from "@mui/material";
-import { Translate } from "@mui/icons-material";
 
 export const DogCard = (props) => {
+  let size = "";
+
+  if (props.sizeVariable === "L") {
+    size = "Large";
+  } else if (props.sizeVariable === "M") {
+    size = "Medium";
+  } else if (props.sizeVariable === "S") {
+    size = "Small";
+  }
+
   return (
-    <Card sx={{ maxWidth: 345, padding: "2rem" }}>
+    <Card
+      sx={{
+        maxWidth: 345,
+        borderRadius: "9px",
+        boxShadow: "0 1.2rem 3.2rem rgba(0, 0, 0, 0.3)",
+      }}
+    >
       <CardMedia
         style={{ top: 0 }}
         component="img"
@@ -19,20 +35,30 @@ export const DogCard = (props) => {
         image={props.imageLink}
         style={{ transform: "translate:(42px, 90px)" }}
       />
-
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      <Box sx={{ display: "flex" }}>
+        <CardContent>
+          <Typography gutterBottom variant="h3" component="div">
+            {props.name}
+          </Typography>
+          <Typography variant="h3">Size: {size}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+            size="medium"
+            sx={{
+              marginLeft: "2.1rem",
+              backgroundColor: "#04111c",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#04111c",
+              },
+            }}
+          >
+            Post Sitting
+          </Button>
+        </CardActions>
+      </Box>
     </Card>
   );
 };

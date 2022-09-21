@@ -10,8 +10,9 @@ import { DogCard } from "../components/DogCard";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    dogsContainer: {
-      backgroundColor: theme.palette.primary.light1,
+    dogCards: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
     },
   })
 );
@@ -42,13 +43,35 @@ export const MyDogs = () => {
   renderDogCards = dogs.map((dog) => {
     const imageLink = "http://127.0.0.1:8000" + dog.dog_image;
 
-    return <DogCard name={dog.name} imageLink={imageLink} />;
+    return (
+      <DogCard name={dog.name} imageLink={imageLink} sizeVariable={dog.size} />
+    );
   });
 
   return (
     <Box marginTop={12}>
       <Container className={classes.dogsContainer} marginTop={9} maxWidth="lg">
-        <Box className={classes.dogCards}>{renderDogCards}</Box>
+        <Typography variant="h1" marginBottom={9}>
+          My Dogs!
+        </Typography>
+        <Box className={classes.dogCards}>
+          {renderDogCards}
+          <Button
+            sx={{
+              height: "30rem",
+              width: "30rem",
+              backgroundColor: "#082137",
+              color: "#fff",
+              borderRadius: "50%",
+              "&:hover": {
+                backgroundColor: "#d0dde8",
+                color: "#04111c",
+              },
+            }}
+          >
+            Add New Dog!
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
