@@ -5,10 +5,7 @@ import {
   Box,
   Container,
   TextField,
-  InputLabel,
   MenuItem,
-  FormControl,
-  Select,
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 
@@ -111,7 +108,7 @@ export const NewDog = () => {
                 fullWidth
                 placeholder="Enter dog's Name"
                 name="name"
-                class={classes.field}
+                className={classes.field}
                 InputProps={{
                   style: styling.resize,
                 }}
@@ -121,9 +118,9 @@ export const NewDog = () => {
 
               <TextField
                 select
-                placeholder="Select dog size"
                 fullWidth
-                class={classes.field}
+                placeholder="Select dog size"
+                className={classes.field}
                 InputProps={{
                   style: styling.resize,
                 }}
@@ -152,7 +149,7 @@ export const NewDog = () => {
                 }}
                 // onClick={handleRegisterSubmit}
               >
-                Sign Up
+                Submit!
               </Button>
             </Box>
           </Box>
