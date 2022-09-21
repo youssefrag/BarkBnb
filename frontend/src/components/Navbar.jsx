@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppBar, Button, Toolbar, Typography, Box } from "@mui/material";
+import { NavDropdown } from "./NavDropdown";
 
 import { UserContext } from "../context/userContext";
 
@@ -110,6 +111,10 @@ export const Navbar = () => {
             >
               Logout
             </Button>
+            <NavDropdown
+              letter={userContextName[0].toUpperCase()}
+              handleLogout={handleLogout}
+            />
           </Box>
         </Toolbar>
       </AppBar>

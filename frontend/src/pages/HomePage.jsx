@@ -7,7 +7,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) =>
   createStyles({
     heroSection: {
-      backgroundColor: theme.palette.primary.light3,
+      backgroundColor: theme.palette.primary.light2,
     },
     heroContainer: {
       maxWidth: "130rem",
