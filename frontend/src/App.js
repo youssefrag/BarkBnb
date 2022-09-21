@@ -10,6 +10,7 @@ import { EditAccount } from "./pages/EditAccount";
 import { HomePage } from "./pages/HomePage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 import { MyDogs } from "./pages/MyDogs";
+import { NewDog } from "./pages/NewDog";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
@@ -54,6 +55,10 @@ function App() {
               <Route
                 path="/dogs"
                 element={isUserLoggedIn ? <MyDogs /> : <LoginRegister />}
+              />
+              <Route
+                path="/new-dog"
+                element={isUserLoggedIn ? <NewDog /> : <LoginRegister />}
               />
             </Routes>
           </header>

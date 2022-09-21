@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 
+import { useNavigate } from "react-router-dom";
+
 import { makeStyles, createStyles } from "@mui/styles";
 
 import { Typography, TextField, Button, Container, Box } from "@mui/material";
@@ -19,6 +21,8 @@ const useStyles = makeStyles((theme) =>
 
 export const MyDogs = () => {
   const classes = useStyles();
+
+  let navigate = useNavigate();
 
   const { userContextEmail } = useContext(UserContext);
 
@@ -57,7 +61,9 @@ export const MyDogs = () => {
         <Box className={classes.dogCards}>
           {renderDogCards}
           <Button
+            onClick={() => navigate("/new-dog")}
             sx={{
+              fontSize: "3.4rem",
               height: "30rem",
               width: "30rem",
               backgroundColor: "#082137",
