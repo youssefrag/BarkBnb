@@ -17,6 +17,10 @@ class Dog(models.Model):
         ('L', 'Large'),
     )
     size = models.CharField(max_length=200, choices=SIZE_CHOICES)
+    dog_image = models.ImageField(
+        null=True, blank=True,
+        upload_to='dogs/', default="dogs/default-dog.jpeg"
+    )
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
