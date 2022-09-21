@@ -37,11 +37,18 @@ export const MyDogs = () => {
 
   console.log(dogs);
 
+  let renderDogCards = [];
+
+  renderDogCards = dogs.map((dog) => {
+    const imageLink = "http://127.0.0.1:8000" + dog.dog_image;
+
+    return <DogCard name={dog.name} imageLink={imageLink} />;
+  });
+
   return (
     <Box marginTop={12}>
       <Container className={classes.dogsContainer} marginTop={9} maxWidth="lg">
-        MyDogs for {userContextEmail}
-        <DogCard />
+        <Box className={classes.dogCards}>{renderDogCards}</Box>
       </Container>
     </Box>
   );
