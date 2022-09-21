@@ -7,11 +7,19 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { Translate } from "@mui/icons-material";
 
 export const DogCard = (props) => {
   return (
     <Card sx={{ maxWidth: 345, padding: "2rem" }}>
-      <CardMedia component="img" height="200" image={props.imageLink} />
+      <CardMedia
+        style={{ top: 0 }}
+        component="img"
+        height="200"
+        image={props.imageLink}
+        style={{ transform: "translate:(42px, 90px)" }}
+      />
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {props.name}
