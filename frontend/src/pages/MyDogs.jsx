@@ -6,6 +6,8 @@ import { makeStyles, createStyles } from "@mui/styles";
 
 import { Typography, TextField, Button, Container, Box } from "@mui/material";
 
+import { DogCard } from "../components/DogCard";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     dogsContainer: {
@@ -39,6 +41,7 @@ export const MyDogs = () => {
     <Box marginTop={12}>
       <Container className={classes.dogsContainer} marginTop={9} maxWidth="lg">
         MyDogs for {userContextEmail}
+        <DogCard />
       </Container>
     </Box>
   );
