@@ -83,6 +83,9 @@ export const Navbar = () => {
   const goToEditAccount = () => {
     navigate("/edit-account");
   };
+  const goToDogsPage = () => {
+    navigate("/dogs");
+  };
 
   if (isUserLoggedIn === true) {
     return (
@@ -101,6 +104,7 @@ export const Navbar = () => {
               letter={userContextName[0].toUpperCase()}
               handleLogout={handleLogout}
               goToEditAccount={goToEditAccount}
+              goToDogsPage={goToDogsPage}
             />
           </Box>
         </Toolbar>

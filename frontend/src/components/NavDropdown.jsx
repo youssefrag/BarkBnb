@@ -101,7 +101,7 @@ export const NavDropdown = (props) => {
           <AccountCircleIcon sx={{ height: 30, width: 30 }} />
           <Typography variant="h4">Edit Account</Typography>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={props.goToDogsPage}>
           <PetsIcon sx={{ height: 30, width: 30 }} />
           <Typography variant="h4" marginLeft={4}>
             My Dogs

@@ -9,6 +9,7 @@ import { Navbar } from "./components/Navbar";
 import { EditAccount } from "./pages/EditAccount";
 import { HomePage } from "./pages/HomePage";
 import { ProfilesPage } from "./pages/ProfilesPage";
+import { MyDogs } from "./pages/MyDogs";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
@@ -49,6 +50,10 @@ function App() {
               <Route
                 path="/edit-account"
                 element={isUserLoggedIn ? <EditAccount /> : <HomePage />}
+              />
+              <Route
+                path="/dogs"
+                element={isUserLoggedIn ? <MyDogs /> : <LoginRegister />}
               />
             </Routes>
           </header>
