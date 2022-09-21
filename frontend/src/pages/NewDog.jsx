@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) =>
       },
     },
     imageContainer: {
-      backgroundImage: "url('/images/login-signup.png')",
+      backgroundImage: "url('/images/new-dog-page.png')",
 
       backgroundSize: "cover",
       width: "auto",
-      backgroundPosition: "-12rem",
+      backgroundPosition: "-20rem",
     },
     form: {
       display: "grid",
