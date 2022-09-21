@@ -12,8 +12,8 @@ from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
-from .serializers import SittingSerializer, ProfileSerializer, UserSerializer
-from sittings.models import Sitting
+from .serializers import SittingSerializer, ProfileSerializer, UserSerializer, DogSerializer
+from sittings.models import Sitting, Dog
 
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -117,4 +117,11 @@ def getProfiles(request):
 def getSittings(request):
     sittings = Sitting.objects.all()
     serializer = SittingSerializer(sittings, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getDogs(request, email):
+    owner = Profile.objects.get(email=email)
+    dogs = Dog.objects.filter(owner=owner)
+    serializer = DogSerializer(dogs, many=True)
     return Response(serializer.data)
