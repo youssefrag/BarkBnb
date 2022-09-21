@@ -80,6 +80,10 @@ export const Navbar = () => {
     });
   };
 
+  const goToEditAccount = () => {
+    navigate("/edit-account");
+  };
+
   if (isUserLoggedIn === true) {
     return (
       <AppBar elevation={0}>
@@ -91,29 +95,12 @@ export const Navbar = () => {
           </Box>
           <Box className={classes.btnContainer}>
             <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
-              How it works
-            </Button>
-            <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
-              Sittings
-            </Button>
-            <Button
-              size="medium"
-              variant="contained"
-              onClick={handleLogout}
-              sx={{
-                backgroundColor: "#04111c",
-                color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#fff",
-                  color: "#04111c",
-                },
-              }}
-            >
-              Logout
+              Browse Sittings
             </Button>
             <NavDropdown
               letter={userContextName[0].toUpperCase()}
               handleLogout={handleLogout}
+              goToEditAccount={goToEditAccount}
             />
           </Box>
         </Toolbar>

@@ -4,16 +4,15 @@ import {
   Avatar,
   Menu,
   MenuItem,
-  ListItemIcon,
-  Divider,
   IconButton,
   Typography,
   Tooltip,
 } from "@mui/material";
 
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
+import { Logout } from "@mui/icons-material";
+import PetsIcon from "@mui/icons-material/Pets";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 
 export const NavDropdown = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -26,7 +25,13 @@ export const NavDropdown = (props) => {
   };
   return (
     <>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -89,29 +94,25 @@ export const NavDropdown = (props) => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <CircleNotificationsIcon sx={{ height: 30, width: 30 }} />
+          <Typography variant="h4">Notifications</Typography>
+        </MenuItem>
+        <MenuItem onClick={props.goToEditAccount}>
+          <AccountCircleIcon sx={{ height: 30, width: 30 }} />
+          <Typography variant="h4">Edit Account</Typography>
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <PetsIcon sx={{ height: 30, width: 30 }} />
+          <Typography variant="h4" marginLeft={4}>
+            My Dogs
+          </Typography>
         </MenuItem>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
+
         <MenuItem onClick={props.handleLogout}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
+          <Logout sx={{ height: 30, width: 30 }} />
+          <Typography variant="h4" marginLeft={4}>
+            Logout
+          </Typography>
         </MenuItem>
       </Menu>
     </>
