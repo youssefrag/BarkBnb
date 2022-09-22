@@ -6,7 +6,7 @@ from django.conf import settings
 
 from users.forms import ProfileForm
 
-from sittings.forms import DogForm
+from sittings.forms import DogForm, SittingForm
 
 from rest_framework.parsers import MultiPartParser, FormParser
 
@@ -149,4 +149,29 @@ def createDogProfile(request, email):
 
     except:
         message = {'detail': 'An error has occured during dog profile creation'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def createSitting(request, dogName):
+    data = request.data 
+    dog = Dog.objects.get(name=dogName)
+    try:
+        sitting = Sitting.objects.create(
+            dog=dog,
+            location=data['city'],
+            start_date=data['startDate'],
+            end_date=data['endDate'],
+        )
+
+        form = SittingForm(instance=sitting)
+
+        if request.method == 'POST':
+            form = SittingForm(data=request.data, instance=sitting)
+            form.save()
+
+            return Response()
+
+    except:
+        message = {'detail': 'An error has occured during sitting creation'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)

@@ -82,6 +82,8 @@ const cities = [
 export const CreateSitting = () => {
   const { dogName } = useParams();
 
+  let navigate = useNavigate();
+
   const classes = useStyles();
 
   let [sitting, setSitting] = useState({
@@ -96,7 +98,12 @@ export const CreateSitting = () => {
   };
 
   const handleSubmit = () => {
-    console.log(sitting);
+    fetch(`http://127.0.0.1:8000/api/new-sitting/${dogName}`, {
+      method: "POST",
+      body: JSON.stringify(sitting),
+    }).then(() => {
+      console.log("SUCCESS");
+    });
   };
 
   return (

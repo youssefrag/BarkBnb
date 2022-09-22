@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Dog
+from .models import Dog, Sitting
 
 class DogForm(ModelForm):
     class Meta:
@@ -8,3 +8,11 @@ class DogForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(DogForm, self).__init__(*args, **kwargs)
+
+class SittingForm(ModelForm):
+    class Meta:
+        model = Sitting
+        fields = ['location', 'start_date', 'end_date']
+
+    def __init__(self, *args, **kwargs):
+        super(SittingForm, self).__init__(*args, **kwargs)
