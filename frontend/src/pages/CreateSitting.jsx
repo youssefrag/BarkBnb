@@ -7,7 +7,7 @@ import {
   Button,
   Container,
   Box,
-  Stack,
+  MenuItem,
 } from "@mui/material";
 
 import { DatePicker } from "@mui/x-date-pickers";
@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme) =>
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
       columnGap: "6rem",
+      rowGap: "4rem",
+    },
+    field: {
+      backgroundColor: "#fff",
+      width: "100%",
+      borderRadius: "9px",
     },
     imageContainer: {
       backgroundImage: "url('/images/create-sitting.png')",
@@ -50,6 +56,29 @@ const styling = {
   },
 };
 
+const cities = [
+  {
+    value: "MTL",
+    label: "Montreal, Quebec",
+  },
+  {
+    value: "TOR",
+    label: "Toronto, Ontario",
+  },
+  {
+    value: "VAN",
+    label: "Vancouver, British Columbia",
+  },
+  {
+    value: "CAL",
+    label: "Calgary, Alberta",
+  },
+  {
+    value: "OTT",
+    label: "Ottawa, Ontario'",
+  },
+];
+
 export const CreateSitting = () => {
   const { dogName } = useParams();
 
@@ -57,13 +86,17 @@ export const CreateSitting = () => {
 
   let [sitting, setSitting] = useState({
     dog: dogName,
-    city: "",
+    city: undefined,
     startDate: null,
     endDate: null,
   });
 
-  const handleStartDateChange = (newValue) => {
-    setSitting((prev) => ({ ...sitting, startDate: newValue }));
+  const handleCityChange = (e) => {
+    setSitting((prev) => ({ ...sitting, city: e.target.value }));
+  };
+
+  const handleSubmit = () => {
+    console.log(sitting);
   };
 
   return (
@@ -75,7 +108,8 @@ export const CreateSitting = () => {
               Typography
               variant="h2"
               color="primary.dark3"
-              marginBottom={8}
+              marginBottom={9}
+              marginTop={5}
             >
               {dogName} needs a sitter 🐾
             </Typography>
@@ -124,6 +158,38 @@ export const CreateSitting = () => {
                   setSitting((prev) => ({ ...sitting, endDate: newValue }));
                 }}
               />
+              <TextField
+                select
+                fullWidth
+                label="Where are you located?"
+                className={classes.field}
+                InputProps={{
+                  style: styling.resize,
+                }}
+                InputLabelProps={{ style: { fontSize: "2rem" } }}
+                value={sitting.city}
+                onChange={handleCityChange}
+              >
+                {cities.map((city) => (
+                  <MenuItem sx={{ fontSize: "1.8rem" }} key={city} value={city}>
+                    {city.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <Button
+                className={classes.btn}
+                sx={{
+                  backgroundColor: "#04111c",
+                  color: "#fff",
+                  "&:hover": {
+                    backgroundColor: "#fff",
+                    color: "#04111c",
+                  },
+                }}
+                onClick={handleSubmit}
+              >
+                Post sitting
+              </Button>
             </Box>
           </Box>
           <Box className={classes.imageContainer}></Box>
