@@ -6,6 +6,7 @@ import {
   Container,
   TextField,
   MenuItem,
+  InputLabel,
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 
@@ -23,13 +24,6 @@ const useStyles = makeStyles((theme) =>
     },
     information: {
       padding: "4rem",
-    },
-    switchPage: {
-      "&:hover": {
-        color: "#14538a",
-        border: "none",
-        cursor: "pointer",
-      },
     },
     imageContainer: {
       backgroundImage: "url('/images/new-dog-page.png')",
@@ -119,11 +113,12 @@ export const NewDog = () => {
               <TextField
                 select
                 fullWidth
-                placeholder="Select dog size"
+                label="Select dog size"
                 className={classes.field}
                 InputProps={{
                   style: styling.resize,
                 }}
+                InputLabelProps={{ style: { fontSize: "2rem" } }}
                 value={dog.size}
                 onChange={handleSizeChange}
               >
