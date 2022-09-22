@@ -9,7 +9,11 @@ import {
   Box,
 } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
+
 export const DogCard = (props) => {
+  let navigate = useNavigate();
+
   let size = "";
 
   if (props.sizeVariable === "L") {
@@ -44,6 +48,7 @@ export const DogCard = (props) => {
         </CardContent>
         <CardActions>
           <Button
+            onClick={() => navigate(`/create-sitting/${props.name}`)}
             size="medium"
             sx={{
               marginLeft: "2.1rem",

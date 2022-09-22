@@ -19,6 +19,7 @@ import Cookies from "js-cookie";
 
 import { Button } from "@mui/material";
 import { LoginRegister } from "./pages/LoginRegister";
+import { CreateSitting } from "./pages/CreateSitting";
 
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -59,6 +60,10 @@ function App() {
               <Route
                 path="/new-dog"
                 element={isUserLoggedIn ? <NewDog /> : <LoginRegister />}
+              />
+              <Route
+                path="/create-sitting/:dogName"
+                element={isUserLoggedIn ? <CreateSitting /> : <LoginRegister />}
               />
             </Routes>
           </header>
