@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) =>
     dogCards: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr 1fr",
+      columnGap: "5rem",
+      rowGap: "5rem",
     },
   })
 );

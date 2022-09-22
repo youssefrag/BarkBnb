@@ -6,6 +6,8 @@ from django.conf import settings
 
 from users.forms import ProfileForm
 
+from sittings.forms import DogForm
+
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from users.models import Profile
@@ -65,7 +67,6 @@ def loginUser(request):
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
-    print(data)
     try:
         user = User.objects.create(
             first_name=data['name'],
@@ -125,3 +126,27 @@ def getDogs(request, email):
     dogs = Dog.objects.filter(owner=owner)
     serializer = DogSerializer(dogs, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def createDogProfile(request, email):
+    data = request.data 
+    owner = Profile.objects.get(email=email)
+    try:
+        dog = Dog.objects.create(
+            name=data['name'],
+            size=data['size'],
+            owner=owner
+        )
+        dog.dog_image.save(request.FILES['dog_image'].name, request.FILES['dog_image'])
+
+        form = DogForm(instance=dog)
+
+        if request.method == 'POST':
+            form = ProfileForm(data=request.data, instance=dog)
+            form.save()
+
+            return Response()
+
+    except:
+        message = {'detail': 'An error has occured during dog profile creation'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)

@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) =>
       height: "50rem",
       width: "100%",
       overflow: "hidden",
-      // padding: "5rem",
       display: "grid",
       gridTemplateColumns: "2fr 1fr",
     },

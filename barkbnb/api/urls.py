@@ -9,5 +9,6 @@ urlpatterns = [
     path('users/login', views.loginUser, name='login-user'),
     path('profile-edit/<str:email>', views.editAccount),
     path('profiles', views.getProfiles),
-    path('dogs/<str:email>', views.getDogs)
+    path('dogs/<str:email>', views.getDogs),
+    path('new-dog/<str:email>', views.createDogProfile),
 ]
