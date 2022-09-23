@@ -24,6 +24,14 @@ export const SittingCard = (props) => {
     return username === userContextName;
   };
 
+  const handleMakeOffer = () => {
+    if (props.username === userContextName) {
+      alert("You cannot make offer on your own sitting!");
+      return;
+    }
+    alert("make offer");
+  };
+
   return (
     <Card
       sx={{
@@ -59,8 +67,7 @@ export const SittingCard = (props) => {
         </CardContent>
         <CardActions>
           <Button
-            disabled={mySitting(props.owner)}
-            // onClick={() => navigate(`/create-sitting/${props.name}`)}
+            onClick={handleMakeOffer}
             size="medium"
             sx={{
               marginLeft: "1.2rem",
