@@ -48,15 +48,50 @@ const useStyles = makeStyles((theme) =>
 export const Sittings = () => {
   const classes = useStyles();
 
+  const [sittings, setSittings] = useState([]);
+
+  useEffect(() => {
+    getSittings();
+  }, []);
+
+  const getSittings = async () => {
+    let response = await fetch(`http://127.0.0.1:8000/api/sittings`);
+    let data = await response.json();
+    setSittings(data);
+  };
+
+  let renderSittings = [];
+
+  const locations = {
+    MTL: "Montreal, Quebec",
+    TOR: "Toronto, Ontario",
+    VAN: "Vancouver, British Columbia",
+    CAL: "Calgary, Alberta",
+    OTT: "Ottawa, Ontario",
+  };
+
+  renderSittings = sittings.map((sitting) => {
+    const imageLink = "http://127.0.0.1:8000" + sitting.dog.dog_image;
+
+    return (
+      <SittingCard
+        name={sitting.dog.name}
+        owner={sitting.dog.owner.name}
+        location={locations[sitting.location]}
+        startDate={sitting.start_date}
+        endDate={sitting.end_date}
+        imageLink={imageLink}
+      />
+    );
+  });
+
   return (
     <Box marginTop={12}>
       <Container className={classes.dogsContainer} marginTop={9} maxWidth="lg">
         <Typography variant="h1" marginBottom={9}>
           All sittings
         </Typography>
-        <Box className={classes.sittingCards}>
-          <SittingCard />
-        </Box>
+        <Box className={classes.sittingCards}>{renderSittings}</Box>
       </Container>
     </Box>
   );

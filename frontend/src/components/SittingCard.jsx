@@ -31,13 +31,24 @@ export const SittingCard = (props) => {
       <Box sx={{ display: "flex" }}>
         <CardContent>
           <Typography gutterBottom variant="h3" component="div">
-            {props.name}
+            Dog name: {props.name}
           </Typography>
-          <Typography variant="h3">Size:</Typography>
+          <Typography gutterBottom variant="h3" component="div">
+            Owner name: {props.owner}
+          </Typography>
+          <Typography gutterBottom variant="h3" component="div">
+            location: {props.location}
+          </Typography>
+          <Typography gutterBottom variant="h3" component="div">
+            start date: {props.startDate}
+          </Typography>
+          <Typography gutterBottom variant="h3" component="div">
+            end date: {props.endDate}
+          </Typography>
         </CardContent>
         <CardActions>
           <Button
-            onClick={() => navigate(`/create-sitting/${props.name}`)}
+            // onClick={() => navigate(`/create-sitting/${props.name}`)}
             size="medium"
             sx={{
               marginLeft: "1.2rem",
