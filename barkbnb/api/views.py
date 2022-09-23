@@ -165,25 +165,28 @@ def createSitting(request, dogName):
     end_date_string = data['endDate'][0:-14]
     end_date_object = datetime.strptime(end_date_string, '%Y-%M-%d').date()
 
+    
 
+    newData = {'dog': dog, 'location': data['city']['value'], 'start_date': start_date_object, 'end_date': end_date_object}
 
     try:
         sitting = Sitting.objects.create(
             dog=dog,
-            location=data['city'],
+            location=data['city']['value'],
             start_date=start_date_object,
             end_date=end_date_object,
         )
 
-        return Response()
+        form = SittingForm(instance=sitting)
 
-    #     form = SittingForm(instance=sitting)
+        # print(request.method)
 
-    #     if request.method == 'POST':
-    #         form = SittingForm(data=request.data, instance=sitting)
-    #         form.save()
+        if request.method == 'POST':
+            form = SittingForm(data=newData, instance=sitting)
+            print(form)
+            form.save()
 
-    #         return Response()
+            return Response()
 
     except:
         message = {'detail': 'An error has occured during sitting creation'}
