@@ -105,7 +105,7 @@ export const CreateSitting = () => {
       },
       body: JSON.stringify(sitting),
     }).then(() => {
-      console.log("SUCCESS");
+      navigate("/sittings");
     });
   };
 

@@ -179,11 +179,9 @@ def createSitting(request, dogName):
 
         form = SittingForm(instance=sitting)
 
-        # print(request.method)
 
         if request.method == 'POST':
             form = SittingForm(data=newData, instance=sitting)
-            print(form)
             form.save()
 
             return Response()

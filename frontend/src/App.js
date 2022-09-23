@@ -11,6 +11,7 @@ import { HomePage } from "./pages/HomePage";
 import { ProfilesPage } from "./pages/ProfilesPage";
 import { MyDogs } from "./pages/MyDogs";
 import { NewDog } from "./pages/NewDog";
+import { Sittings } from "./pages/Sittings";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
@@ -72,6 +73,10 @@ function App() {
                   element={
                     isUserLoggedIn ? <CreateSitting /> : <LoginRegister />
                   }
+                />
+                <Route
+                  path="/sittings"
+                  element={isUserLoggedIn ? <Sittings /> : <LoginRegister />}
                 />
               </Routes>
             </header>
