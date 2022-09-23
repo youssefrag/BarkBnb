@@ -8,11 +8,22 @@ import {
   Typography,
   Box,
 } from "@mui/material";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
 
 import { useNavigate } from "react-router-dom";
 
 export const SittingCard = (props) => {
+  //   const classes = useStyles();
+
   let navigate = useNavigate();
+
+  const { userContextEmail, userContextName } = useContext(UserContext);
+
+  const mySitting = (username) => {
+    return username === userContextName;
+  };
+
   return (
     <Card
       sx={{
@@ -48,6 +59,7 @@ export const SittingCard = (props) => {
         </CardContent>
         <CardActions>
           <Button
+            disabled={mySitting(props.owner)}
             // onClick={() => navigate(`/create-sitting/${props.name}`)}
             size="medium"
             sx={{
