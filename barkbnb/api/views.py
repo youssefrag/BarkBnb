@@ -24,6 +24,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import status
 
+from datetime import datetime
+
 @api_view(['GET'])
 def getRoutes(request):
 
@@ -156,47 +158,33 @@ def createDogProfile(request, email):
 def createSitting(request, dogName):
     data = request.data 
     dog = Dog.objects.get(name=dogName)
+
+    start_date_string = data['startDate'][0:-14]
+    start_date_object = datetime.strptime(start_date_string, '%Y-%M-%d').date()
+
+    end_date_string = data['endDate'][0:-14]
+    end_date_object = datetime.strptime(end_date_string, '%Y-%M-%d').date()
+
+
+
     try:
         sitting = Sitting.objects.create(
             dog=dog,
             location=data['city'],
-            start_date=data['startDate'],
-            end_date=data['endDate'],
+            start_date=start_date_object,
+            end_date=end_date_object,
         )
 
-        form = SittingForm(instance=sitting)
+        return Response()
 
-        if request.method == 'POST':
-            form = SittingForm(data=request.data, instance=sitting)
-            form.save()
+    #     form = SittingForm(instance=sitting)
 
-            return Response()
+    #     if request.method == 'POST':
+    #         form = SittingForm(data=request.data, instance=sitting)
+    #         form.save()
+
+    #         return Response()
 
     except:
         message = {'detail': 'An error has occured during sitting creation'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
-
-
-# @api_view(['POST'])
-# def createSitting(request, dogName):
-#     data = request.data 
-#     dog = Dog.objects.get(name=dogName)
-#     try:
-#         sitting = Sitting.objects.create(
-#             dog=dog,
-#             location=data['city'],
-#             start_date=data['startDate'],
-#             end_date=data['endDate'],
-#         )
-
-#         form = SittingForm(instance=sitting)
-
-#         if request.method == 'POST':
-#             form = SittingForm(data=request.data, instance=sitting)
-#             form.save()
-
-#             return Response()
-
-#     except:
-#         message = {'detail': 'An error has occured during sitting creation'}
-#         return Response(message, status=status.HTTP_400_BAD_REQUEST)
