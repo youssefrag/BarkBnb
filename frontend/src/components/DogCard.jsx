@@ -51,7 +51,7 @@ export const DogCard = (props) => {
             onClick={() => navigate(`/create-sitting/${props.name}`)}
             size="medium"
             sx={{
-              marginLeft: "2.1rem",
+              marginLeft: "1.2rem",
               backgroundColor: "#04111c",
               color: "#fff",
               "&:hover": {
