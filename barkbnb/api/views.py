@@ -160,10 +160,10 @@ def createSitting(request, dogName):
     dog = Dog.objects.get(name=dogName)
 
     start_date_string = data['startDate'][0:-14]
-    start_date_object = datetime.strptime(start_date_string, '%Y-%M-%d').date()
+    start_date_object = datetime.strptime(start_date_string, '%Y-%m-%d').date()
 
     end_date_string = data['endDate'][0:-14]
-    end_date_object = datetime.strptime(end_date_string, '%Y-%M-%d').date()
+    end_date_object = datetime.strptime(end_date_string, '%Y-%m-%d').date()
 
     
 
