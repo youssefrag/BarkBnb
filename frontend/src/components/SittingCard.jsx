@@ -47,7 +47,7 @@ export const SittingCard = (props) => {
         image={props.imageLink}
         style={{ transform: "translate:(42px, 90px)" }}
       />
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", padding: "2rem" }}>
         <CardContent>
           <Typography gutterBottom variant="h3" component="div">
             Dog name: {props.name}

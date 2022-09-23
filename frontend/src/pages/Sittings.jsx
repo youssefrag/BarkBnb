@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) =>
       gridTemplateColumns: "1fr 1fr 1fr",
       columnGap: "5rem",
       rowGap: "5rem",
+      marginBottom: "5rem",
     },
   })
 );
@@ -40,7 +41,7 @@ export const Sittings = () => {
   const locations = {
     MTL: "Montreal, Quebec",
     TOR: "Toronto, Ontario",
-    VAN: "Vancouver, British Columbia",
+    VAN: "Vancouver, BC",
     CAL: "Calgary, Alberta",
     OTT: "Ottawa, Ontario",
   };
