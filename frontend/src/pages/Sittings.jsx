@@ -51,6 +51,7 @@ export const Sittings = () => {
 
     return (
       <SittingCard
+        id={sitting.id}
         name={sitting.dog.name}
         owner={sitting.dog.owner.name}
         location={locations[sitting.location]}

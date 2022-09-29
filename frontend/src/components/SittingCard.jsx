@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
@@ -8,6 +8,8 @@ import {
   Typography,
   Box,
   Stack,
+  Modal,
+  TextField,
 } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
@@ -21,8 +23,13 @@ export const SittingCard = (props) => {
 
   const { userContextEmail, userContextName } = useContext(UserContext);
 
-  const mySitting = (username) => {
-    return username === userContextName;
+  const [openOffer, setOpenOffer] = useState(false);
+
+  const handleOpenOffer = () => {
+    setOpenOffer(true);
+  };
+  const handleCloseOffer = () => {
+    setOpenOffer(false);
   };
 
   const handleMakeOffer = () => {
@@ -30,7 +37,13 @@ export const SittingCard = (props) => {
       alert("You cannot make offer on your own sitting!");
       return;
     }
-    alert("make offer");
+    console.log(props);
+    fetch(`http://127.0.0.1:8000/api/make-offer/${userContextEmail}`, {
+      method: "POST",
+      body: props,
+    }).then(() => {
+      navigate("/dogs");
+    });
   };
 
   return (
@@ -134,6 +147,19 @@ export const SittingCard = (props) => {
           </Button>
         </CardActions>
       </Box>
+      <Modal
+        open={openOffer}
+        onClose={handleCloseOffer}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Stack>
+          <Typography variant="h3">
+            Please Enter the price you would like to charge
+          </Typography>
+          <TextField />
+        </Stack>
+      </Modal>
     </Card>
   );
 };

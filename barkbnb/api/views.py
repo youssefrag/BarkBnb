@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
 from .serializers import SittingSerializer, ProfileSerializer, UserSerializer, DogSerializer
-from sittings.models import Sitting, Dog
+from sittings.models import Sitting, Dog, Offer
 
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -189,3 +189,8 @@ def createSitting(request, dogName):
     except:
         message = {'detail': 'An error has occured during sitting creation'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def makeOffer(request, userEmail):
+    data = request.data
