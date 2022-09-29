@@ -12,5 +12,5 @@ urlpatterns = [
     path('dogs/<str:email>', views.getDogs),
     path('new-dog/<str:email>', views.createDogProfile),
     path('new-sitting/<str:dogName>', views.createSitting),
-    path('make-offer/<str:email>', views.makeOffer),
+    path('make-offer/<str:userEmail>', views.makeOffer),
 ]

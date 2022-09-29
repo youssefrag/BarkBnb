@@ -33,6 +33,7 @@ export const SittingCard = (props) => {
   };
   const handleCloseOffer = () => {
     setOpenOffer(false);
+    setPrice(null);
   };
 
   const handleMakeOffer = () => {
@@ -43,9 +44,12 @@ export const SittingCard = (props) => {
     console.log(props);
     fetch(`http://127.0.0.1:8000/api/make-offer/${userContextEmail}`, {
       method: "POST",
-      body: { ...props, price: price },
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...props, price: price }),
     }).then(() => {
-      navigate("/dogs");
+      // navigate("/dogs");
     });
   };
 

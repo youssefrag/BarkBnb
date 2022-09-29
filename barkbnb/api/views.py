@@ -194,3 +194,8 @@ def createSitting(request, dogName):
 @api_view(['POST'])
 def makeOffer(request, userEmail):
     data = request.data
+
+    sitter = Profile.objects.get(email=userEmail)
+    print(sitter)
+
+    return Response()
