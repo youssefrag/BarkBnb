@@ -3,6 +3,7 @@ import { Toolbar, Box, Button, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import { UserContext } from "../context/userContext";
+import { useEffect } from "react";
 
 let rows = [{ id: 1, offer: "name" }];
 
@@ -85,11 +86,15 @@ export const OffersReceived = () => {
 
   const getOffersReceived = async () => {
     let response = await fetch(
-      `http://127.0.0.1:8000/api/dogs/${userContextName}`
+      `http://127.0.0.1:8000/api/get-offers-received/${userContextName}`
     );
     let data = await response.json();
     setOffersReceived(data);
   };
+
+  useEffect(() => {
+    getOffersReceived();
+  }, []);
 
   return (
     <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>

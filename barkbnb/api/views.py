@@ -218,3 +218,12 @@ def makeOffer(request, userEmail):
     except:
         message = {'detail': 'An error has occured during offer creation'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getOffersReceived(request, name):
+    owner = Profile.objects.get(name=name)
+    dogs = Dog.objects.filter(owner=owner)
+
+    sittings = Sitting.objects.filter(dog=dogs)
+
+    return Response()
