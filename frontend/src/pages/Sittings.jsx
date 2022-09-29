@@ -39,11 +39,11 @@ export const Sittings = () => {
   let renderSittings = [];
 
   const locations = {
-    MTL: "Montreal, Quebec",
-    TOR: "Toronto, Ontario",
-    VAN: "Vancouver, BC",
-    CAL: "Calgary, Alberta",
-    OTT: "Ottawa, Ontario",
+    MTL: "Montreal",
+    TOR: "Toronto",
+    VAN: "Vancouver",
+    CAL: "Calgary",
+    OTT: "Ottawa",
   };
 
   renderSittings = sittings.map((sitting) => {

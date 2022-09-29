@@ -7,6 +7,7 @@ import {
   Button,
   Typography,
   Box,
+  Stack,
 } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
@@ -49,23 +50,73 @@ export const SittingCard = (props) => {
       />
       <Box sx={{ display: "flex", flexDirection: "column", padding: "2rem" }}>
         <CardContent>
-          <Typography gutterBottom variant="h3" component="div">
-            Dog name: {props.name}
-          </Typography>
-          <Typography gutterBottom variant="h3" component="div">
-            Owner name: {props.owner}
-          </Typography>
-          <Typography gutterBottom variant="h3" component="div">
-            location: {props.location}
-          </Typography>
-          <Typography gutterBottom variant="h3" component="div">
-            start date: {props.startDate}
-          </Typography>
-          <Typography gutterBottom variant="h3" component="div">
-            end date: {props.endDate}
-          </Typography>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography gutterBottom variant="h3" component="div">
+              Dog name
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="div"
+              sx={{ fontWeight: "bold" }}
+            >
+              {props.name}
+            </Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography gutterBottom variant="h3" component="div">
+              Owner name
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="div"
+              sx={{ fontWeight: "bold" }}
+            >
+              {props.owner}
+            </Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography gutterBottom variant="h3" component="div">
+              Location
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="div"
+              sx={{ fontWeight: "bold" }}
+            >
+              {props.location}
+            </Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography gutterBottom variant="h3" component="div">
+              Start Date
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="div"
+              sx={{ fontWeight: "bold" }}
+            >
+              {props.startDate}
+            </Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography gutterBottom variant="h3" component="div">
+              End Date
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="div"
+              sx={{ fontWeight: "bold" }}
+            >
+              {props.endDate}
+            </Typography>
+          </Stack>
         </CardContent>
-        <CardActions>
+        <CardActions sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             onClick={handleMakeOffer}
             size="medium"
