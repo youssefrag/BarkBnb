@@ -10,6 +10,7 @@ const handleAccept = () => {
 };
 
 const datagridSx = {
+  height: "90rem",
   "& .MuiDataGrid-columnHeaders": {
     backgroundColor: "primary.light2",
   },
@@ -29,34 +30,31 @@ const datagridSx = {
 const getColumns = () => {
   return [
     {
-      field: "offer",
-      headerName: "Offers",
+      field: "sitter",
+      headerName: "Sitter",
       minWidth: 50,
-      renderCell: (cellValues) => {
-        return (
-          <Box sx={{ color: "primary.main", fontSize: 18, fontWeight: "bold" }}>
-            {cellValues.value}
-          </Box>
-        );
-      },
+      // renderCell: (cellValues) => {
+      //   return (
+      //     <Box sx={{ color: "primary.main", fontSize: 18, fontWeight: "bold" }}>
+      //       {cellValues.value}
+      //     </Box>
+      //   );
+      // },
     },
     {
-      field: "accepted",
-      headerName: "accepted",
+      field: "startDate",
+      headerName: "Start Date",
+      minWidth: 50,
+    },
+    {
+      field: "endDate",
+      headerName: "End Date",
       minWidth: 50,
     },
     {
       field: "price",
       headerName: "price",
       minWidth: 50,
-    },
-    {
-      field: "sitter",
-      headerName: "sitter",
-      minWidth: 50,
-      renderCell: (cellValues) => {
-        return <div>{cellValues.value ? cellValues.value[0] : ""}</div>;
-      },
     },
     {
       field: "Accept",
@@ -93,20 +91,30 @@ export const OffersReceived = () => {
     );
     let data = await response.json();
     setOffersReceived(data);
-    console.log(offersReceived);
   };
 
   useEffect(() => {
     getOffersReceived();
   }, []);
 
-  let gridRows = [{ id: 1, offer: "name" }];
-  console.log(offersReceived);
+  const gridRowsArray = [];
+
+  for (let i = 0; i < offersReceived.length; i++) {
+    let offerObject = {};
+    offerObject.id = offersReceived[i].sitter.id;
+    offerObject.sitter = offersReceived[i].sitter.name;
+    offerObject.startDate = offersReceived[i].sitting.start_date;
+    offerObject.endDate = offersReceived[i].sitting.end_date;
+    offerObject.price = offersReceived[i].price;
+    gridRowsArray.push(offerObject);
+  }
+
+  console.log(gridRowsArray);
 
   return (
     <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>
       <DataGrid
-        rows={offersReceived}
+        rows={gridRowsArray}
         columns={getColumns()}
         headerHeight={60}
         rowHeight={120}
