@@ -89,6 +89,7 @@ export const OffersReceived = () => {
       `http://127.0.0.1:8000/api/get-offers-received/${userContextName}`
     );
     let data = await response.json();
+    console.log(data);
     setOffersReceived(data);
   };
 

@@ -14,7 +14,7 @@ from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
-from .serializers import SittingSerializer, ProfileSerializer, UserSerializer, DogSerializer
+from .serializers import SittingSerializer, ProfileSerializer, UserSerializer, DogSerializer, OfferSerializer
 from sittings.models import Sitting, Dog, Offer
 
 from django.core.files.storage import default_storage
@@ -221,9 +221,9 @@ def makeOffer(request, userEmail):
 
 @api_view(['GET'])
 def getOffersReceived(request, name):
-    owner = Profile.objects.get(name=name)
-    dogs = Dog.objects.filter(owner=owner)
 
-    sittings = Sitting.objects.filter(dog=dogs)
+    offers = Offer.objects.filter(sitting__dog__owner__name=name)
 
-    return Response()
+    serializer = OfferSerializer(offers, many=True)
+
+    return Response(serializer.data)
