@@ -6,7 +6,7 @@ from django.conf import settings
 
 from users.forms import ProfileForm
 
-from sittings.forms import DogForm, SittingForm
+from sittings.forms import DogForm, SittingForm, OfferForm
 
 from rest_framework.parsers import MultiPartParser, FormParser
 
@@ -194,14 +194,11 @@ def createSitting(request, dogName):
 @api_view(['POST'])
 def makeOffer(request, userEmail):
     data = request.data
-    print(data)
 
     sitter = Profile.objects.get(email=userEmail)
-    print(sitter)
 
     sitting_id = data['id']
     sitting = Sitting.objects.get(id= sitting_id)
-    print(sitting)
 
     try:
         offer = Offer.objects.create(
@@ -209,6 +206,12 @@ def makeOffer(request, userEmail):
             sitting = sitting,
             price = data['price']
         )
+
+        form = OfferForm(instance=offer)
+
+        if request.method == 'POST':
+            form = OfferForm(data=request.data, instance=offer)
+            form.save()
 
         return Response()
 

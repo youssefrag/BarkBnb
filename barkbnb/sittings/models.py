@@ -60,4 +60,4 @@ class Offer(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return self.sitting
+        return f'{self.sitter} offers {self.price}$ for {self.sitting.id}'
