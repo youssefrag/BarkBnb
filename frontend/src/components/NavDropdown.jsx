@@ -93,7 +93,7 @@ export const NavDropdown = (props) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
+        <MenuItem onClick={props.goToNotifications}>
           <CircleNotificationsIcon sx={{ height: 30, width: 30 }} />
           <Typography variant="h4">Notifications</Typography>
         </MenuItem>

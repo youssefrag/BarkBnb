@@ -12,6 +12,7 @@ import { ProfilesPage } from "./pages/ProfilesPage";
 import { MyDogs } from "./pages/MyDogs";
 import { NewDog } from "./pages/NewDog";
 import { Sittings } from "./pages/Sittings";
+import { Notifications } from "./pages/Notifications";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
@@ -77,6 +78,12 @@ function App() {
                 <Route
                   path="/sittings"
                   element={isUserLoggedIn ? <Sittings /> : <LoginRegister />}
+                />
+                <Route
+                  path="/notifications"
+                  element={
+                    isUserLoggedIn ? <Notifications /> : <LoginRegister />
+                  }
                 />
               </Routes>
             </header>

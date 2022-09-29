@@ -86,6 +86,9 @@ export const Navbar = () => {
   const goToDogsPage = () => {
     navigate("/dogs");
   };
+  const goToNotifications = () => {
+    navigate("/notifications");
+  };
 
   if (isUserLoggedIn === true) {
     return (
@@ -110,6 +113,7 @@ export const Navbar = () => {
               handleLogout={handleLogout}
               goToEditAccount={goToEditAccount}
               goToDogsPage={goToDogsPage}
+              goToNotifications={goToNotifications}
             />
           </Box>
         </Toolbar>

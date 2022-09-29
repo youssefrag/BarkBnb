@@ -29,6 +29,10 @@ export const SittingCard = (props) => {
   const [price, setPrice] = useState(null);
 
   const handleOpenOffer = () => {
+    if (props.owner === userContextName) {
+      alert("You cannot make offer on your own sitting");
+      return;
+    }
     setOpenOffer(true);
   };
   const handleCloseOffer = () => {
@@ -41,7 +45,6 @@ export const SittingCard = (props) => {
       alert("You cannot make offer on your own sitting!");
       return;
     }
-    console.log(props);
     fetch(`http://127.0.0.1:8000/api/make-offer/${userContextEmail}`, {
       method: "POST",
       headers: {
@@ -49,7 +52,7 @@ export const SittingCard = (props) => {
       },
       body: JSON.stringify({ ...props, price: price }),
     }).then(() => {
-      // navigate("/dogs");
+      navigate("/");
     });
   };
 
