@@ -16,3 +16,11 @@ class SittingForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SittingForm, self).__init__(*args, **kwargs)
+
+class OfferForm(ModelForm):
+    class Meta:
+        model = Offer
+        fields = ['price']
+
+    def __init__(self, *args, **kwargs):
+        super(OfferForm, self).__init__(*args, **kwargs)

@@ -194,8 +194,24 @@ def createSitting(request, dogName):
 @api_view(['POST'])
 def makeOffer(request, userEmail):
     data = request.data
+    print(data)
 
     sitter = Profile.objects.get(email=userEmail)
     print(sitter)
 
-    return Response()
+    sitting_id = data['id']
+    sitting = Sitting.objects.get(id= sitting_id)
+    print(sitting)
+
+    try:
+        offer = Offer.objects.create(
+            sitter = sitter,
+            sitting = sitting,
+            price = data['price']
+        )
+
+        return Response()
+
+    except:
+        message = {'detail': 'An error has occured during offer creation'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
