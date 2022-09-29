@@ -43,7 +43,7 @@ export const SittingCard = (props) => {
     console.log(props);
     fetch(`http://127.0.0.1:8000/api/make-offer/${userContextEmail}`, {
       method: "POST",
-      body: props,
+      body: { ...props, price: price },
     }).then(() => {
       navigate("/dogs");
     });
@@ -177,6 +177,7 @@ export const SittingCard = (props) => {
       >
         <Stack sx={modalStyle} alignItems="center" gap={6}>
           <TextField
+            type="number"
             placeholder="How much would you like to charge in $?"
             name="price"
             value={price}
@@ -202,6 +203,7 @@ export const SittingCard = (props) => {
                 color: "#04111c",
               },
             }}
+            onClick={handleMakeOffer}
           >
             Submit
           </Button>
