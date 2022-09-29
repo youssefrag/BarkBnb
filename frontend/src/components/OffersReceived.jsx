@@ -5,8 +5,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { UserContext } from "../context/userContext";
 import { useEffect } from "react";
 
-let rows = [{ id: 1, offer: "name" }];
-
 const handleAccept = () => {
   console.log("accept offer");
 };
@@ -33,7 +31,7 @@ const getColumns = () => {
     {
       field: "offer",
       headerName: "Offers",
-      minWidth: 250,
+      minWidth: 50,
       renderCell: (cellValues) => {
         return (
           <Box sx={{ color: "primary.main", fontSize: 18, fontWeight: "bold" }}>
@@ -45,20 +43,25 @@ const getColumns = () => {
     {
       field: "accepted",
       headerName: "accepted",
-      minWidth: 200,
+      minWidth: 50,
+    },
+    {
+      field: "price",
+      headerName: "price",
+      minWidth: 50,
     },
     {
       field: "sitter",
       headerName: "sitter",
-      minWidth: 300,
+      minWidth: 50,
       renderCell: (cellValues) => {
         return <div>{cellValues.value ? cellValues.value[0] : ""}</div>;
       },
     },
     {
       field: "Accept",
-      minWidth: 100,
-      renderCell: (cellValues) => {
+      minWidth: 50,
+      renderCell: () => {
         return (
           <Button
             variant="contained"
@@ -82,25 +85,28 @@ const getColumns = () => {
 export const OffersReceived = () => {
   const { userContextName } = useContext(UserContext);
 
-  const [offersReceived, setOffersReceived] = [];
+  const [offersReceived, setOffersReceived] = useState([]);
 
   const getOffersReceived = async () => {
     let response = await fetch(
       `http://127.0.0.1:8000/api/get-offers-received/${userContextName}`
     );
     let data = await response.json();
-    console.log(data);
     setOffersReceived(data);
+    console.log(offersReceived);
   };
 
   useEffect(() => {
     getOffersReceived();
   }, []);
 
+  let gridRows = [{ id: 1, offer: "name" }];
+  console.log(offersReceived);
+
   return (
     <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>
       <DataGrid
-        rows={rows}
+        rows={offersReceived}
         columns={getColumns()}
         headerHeight={60}
         rowHeight={120}
