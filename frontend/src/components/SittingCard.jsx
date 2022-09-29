@@ -10,6 +10,7 @@ import {
   Stack,
   Modal,
   TextField,
+  InputAdornment,
 } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
@@ -24,6 +25,8 @@ export const SittingCard = (props) => {
   const { userContextEmail, userContextName } = useContext(UserContext);
 
   const [openOffer, setOpenOffer] = useState(false);
+
+  const [price, setPrice] = useState(null);
 
   const handleOpenOffer = () => {
     setOpenOffer(true);
@@ -44,6 +47,25 @@ export const SittingCard = (props) => {
     }).then(() => {
       navigate("/dogs");
     });
+  };
+
+  const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "70rem",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: "30px",
+    padding: "4rem",
+  };
+
+  const styling = {
+    resize: {
+      fontSize: "2rem",
+    },
   };
 
   return (
@@ -131,7 +153,7 @@ export const SittingCard = (props) => {
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
           <Button
-            onClick={handleMakeOffer}
+            onClick={handleOpenOffer}
             size="medium"
             sx={{
               marginLeft: "1.2rem",
@@ -153,11 +175,36 @@ export const SittingCard = (props) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Stack>
-          <Typography variant="h3">
-            Please Enter the price you would like to charge
-          </Typography>
-          <TextField />
+        <Stack sx={modalStyle} alignItems="center" gap={6}>
+          <TextField
+            placeholder="How much would you like to charge in $?"
+            name="price"
+            value={price}
+            sx={{
+              backgroundColor: "#fff",
+              width: "100%",
+              borderRadius: "9px",
+              width: "42rem",
+            }}
+            InputProps={{
+              style: styling.resize,
+            }}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          />
+          <Button
+            sx={{
+              backgroundColor: "#04111c",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#fff",
+                color: "#04111c",
+              },
+            }}
+          >
+            Submit
+          </Button>
         </Stack>
       </Modal>
     </Card>
