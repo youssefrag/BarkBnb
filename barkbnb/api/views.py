@@ -227,3 +227,14 @@ def getOffersReceived(request, name):
     serializer = OfferSerializer(offers, many=True)
 
     return Response(serializer.data)
+
+@api_view(['POST'])
+def acceptOffer(request, offerId):
+
+    # print(offerId)
+
+    offer = Offer.objects.get(id=offerId)
+
+    print(offer)
+
+    return Response()

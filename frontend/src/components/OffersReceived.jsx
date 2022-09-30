@@ -5,9 +5,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { UserContext } from "../context/userContext";
 import { useEffect } from "react";
 
-const handleAccept = () => {
-  console.log("accept offer");
+const handleAccept = (offerId) => {
+  fetch(`http://127.0.0.1:8000/api/accept-offer/${offerId}`, {
+    method: "POST",
+  }).then(() => {
+    console.log("offer has been accepted");
+  });
 };
+
+// const handleAccept = (offerId) => {
+//   console.log(offerId);
+// };
 
 const datagridSx = {
   height: "70rem",
@@ -58,9 +66,9 @@ const getColumns = () => {
       minWidth: 50,
     },
     {
-      field: "Accept",
+      field: "id",
       minWidth: 50,
-      renderCell: () => {
+      renderCell: (cellValues) => {
         return (
           <Button
             variant="contained"
@@ -70,7 +78,7 @@ const getColumns = () => {
               fontSize: "1.2rem",
             }}
             onClick={() => {
-              handleAccept();
+              handleAccept(cellValues.id);
             }}
           >
             Accept
@@ -104,14 +112,17 @@ export const OffersReceived = () => {
 
   for (let i = 0; i < offersReceived.length; i++) {
     let offerObject = {};
-    offerObject.id = offersReceived[i].sitter.id;
+    offerObject.id = offersReceived[i].id;
     offerObject.sitter = offersReceived[i].sitter.name;
     offerObject.startDate = offersReceived[i].sitting.start_date;
     offerObject.endDate = offersReceived[i].sitting.end_date;
     offerObject.price = offersReceived[i].price;
     offerObject.dog = offersReceived[i].sitting.dog.name;
+    console.log(offerObject);
     gridRowsArray.push(offerObject);
   }
+
+  console.log(gridRowsArray);
 
   return (
     <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>
