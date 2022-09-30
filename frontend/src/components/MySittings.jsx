@@ -34,22 +34,22 @@ const getColumns = () => {
     {
       field: "sitter",
       headerName: "Sitter",
-      minWidth: 150,
+      minWidth: 180,
     },
     {
       field: "dog",
       headerName: "Dog",
-      minWidth: 120,
+      minWidth: 150,
     },
     {
       field: "startDate",
       headerName: "Start Date",
-      minWidth: 175,
+      minWidth: 195,
     },
     {
       field: "endDate",
       headerName: "End Date",
-      minWidth: 175,
+      minWidth: 195,
     },
     {
       field: "price",
