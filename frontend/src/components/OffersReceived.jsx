@@ -10,7 +10,7 @@ const handleAccept = () => {
 };
 
 const datagridSx = {
-  height: "90rem",
+  height: "70rem",
   "& .MuiDataGrid-columnHeaders": {
     backgroundColor: "primary.light2",
   },
@@ -21,9 +21,12 @@ const datagridSx = {
   "& .MuiDataGrid-virtualScrollerRenderZone": {
     "& .MuiDataGrid-row": {
       "&:nth-of-type(2n)": {
-        backgroundColor: "grid.main",
+        backgroundColor: "primary.light2",
       },
     },
+  },
+  "& .MuiDataGrid-cellContent": {
+    fontSize: 16,
   },
 };
 
@@ -32,24 +35,22 @@ const getColumns = () => {
     {
       field: "sitter",
       headerName: "Sitter",
-      minWidth: 50,
-      // renderCell: (cellValues) => {
-      //   return (
-      //     <Box sx={{ color: "primary.main", fontSize: 18, fontWeight: "bold" }}>
-      //       {cellValues.value}
-      //     </Box>
-      //   );
-      // },
+      minWidth: 150,
+    },
+    {
+      field: "dog",
+      headerName: "Dog",
+      minWidth: 120,
     },
     {
       field: "startDate",
       headerName: "Start Date",
-      minWidth: 50,
+      minWidth: 175,
     },
     {
       field: "endDate",
       headerName: "End Date",
-      minWidth: 50,
+      minWidth: 175,
     },
     {
       field: "price",
@@ -97,6 +98,8 @@ export const OffersReceived = () => {
     getOffersReceived();
   }, []);
 
+  console.log(offersReceived);
+
   const gridRowsArray = [];
 
   for (let i = 0; i < offersReceived.length; i++) {
@@ -106,10 +109,9 @@ export const OffersReceived = () => {
     offerObject.startDate = offersReceived[i].sitting.start_date;
     offerObject.endDate = offersReceived[i].sitting.end_date;
     offerObject.price = offersReceived[i].price;
+    offerObject.dog = offersReceived[i].sitting.dog.name;
     gridRowsArray.push(offerObject);
   }
-
-  console.log(gridRowsArray);
 
   return (
     <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>
