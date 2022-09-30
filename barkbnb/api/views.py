@@ -222,7 +222,7 @@ def makeOffer(request, userEmail):
 @api_view(['GET'])
 def getOffersReceived(request, name):
 
-    offers = Offer.objects.filter(sitting__dog__owner__name=name)
+    offers = Offer.objects.filter(sitting__dog__owner__name=name).filter(accepted=False)
 
     serializer = OfferSerializer(offers, many=True)
 
@@ -236,9 +236,7 @@ def acceptOffer(request, offerId):
     offer = Offer.objects.get(id=offerId)
 
     try:
-        # offer.update(accepted=True)
         offer.accepted = True
-        print(offer.accepted)
         offer.save()
         return Response()
     except:
