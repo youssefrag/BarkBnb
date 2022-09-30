@@ -231,8 +231,6 @@ def getOffersReceived(request, name):
 @api_view(['POST'])
 def acceptOffer(request, offerId):
 
-    # print(offerId)
-
     offer = Offer.objects.get(id=offerId)
 
     try:

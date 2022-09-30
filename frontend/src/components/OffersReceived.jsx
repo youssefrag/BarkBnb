@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 
 import { UserContext } from "../context/userContext";
 import { useEffect } from "react";
+import { fontSize } from "@mui/system";
 
 const handleAccept = (offerId) => {
   fetch(`http://127.0.0.1:8000/api/accept-offer/${offerId}`, {
@@ -31,6 +32,9 @@ const datagridSx = {
   },
   "& .MuiDataGrid-cellContent": {
     fontSize: 16,
+  },
+  "& .MuiTablePagination-displayedRows": {
+    fontSize: "2rem ",
   },
 };
 
@@ -75,6 +79,7 @@ const getColumns = () => {
             }}
             onClick={() => {
               handleAccept(cellValues.id);
+              // setRefreshState(2);
             }}
           >
             Accept
@@ -100,7 +105,7 @@ export const OffersReceived = () => {
 
   useEffect(() => {
     getOffersReceived();
-  }, []);
+  }, [offersReceived]);
 
   const gridRowsArray = [];
 
