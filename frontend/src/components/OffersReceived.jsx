@@ -79,7 +79,7 @@ const getColumns = () => {
             }}
             onClick={() => {
               handleAccept(cellValues.id);
-              // setRefreshState(2);
+              window.location.reload();
             }}
           >
             Accept
