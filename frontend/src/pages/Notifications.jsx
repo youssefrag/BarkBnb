@@ -5,7 +5,7 @@ import { Button, Container, Stack } from "@mui/material";
 import { OffersReceived } from "../components/OffersReceived";
 import { OffersSent } from "../components/OffersSent";
 
-import { UpcomingSittings } from "../components/UpcomingSittings";
+import { MySittings } from "../components/MySittings";
 
 export const Notifications = () => {
   const [page, setPage] = useState("offersReceived");
@@ -31,10 +31,7 @@ export const Notifications = () => {
           <Button variant="contained" onClick={() => setPage("offersSent")}>
             Offers Sent
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => setPage("upcomingSittings")}
-          >
+          <Button variant="contained" onClick={() => setPage("mySittings")}>
             Upcoming Sittings
           </Button>
         </Stack>
@@ -51,17 +48,14 @@ export const Notifications = () => {
           <Button variant="contained" onClick={() => setPage("offersSent")}>
             Offers Sent
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => setPage("upcomingSittings")}
-          >
+          <Button variant="contained" onClick={() => setPage("mySittings")}>
             Upcoming Sittings
           </Button>
         </Stack>
         <OffersSent />;
       </Container>
     );
-  } else if (page === "upcomingSittings") {
+  } else if (page === "mySittings") {
     return (
       <Container maxWidth="md" sx={styles.containerSx}>
         <Stack sx={styles.stackSx}>
@@ -71,14 +65,11 @@ export const Notifications = () => {
           <Button variant="contained" onClick={() => setPage("offersSent")}>
             Offers Sent
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => setPage("upcomingSittings")}
-          >
+          <Button variant="contained" onClick={() => setPage("mySittings")}>
             Upcoming Sittings
           </Button>
         </Stack>
-        <UpcomingSittings />;
+        <MySittings />;
       </Container>
     );
   }

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import { UserContext } from "../context/userContext";
@@ -56,50 +56,33 @@ const getColumns = () => {
       headerName: "price",
       minWidth: 50,
     },
-    {
-      field: "Status",
-      minWidth: 50,
-      renderCell: (cellValues) => {
-        return <Typography sx={{ fontSize: "2rem" }}>Pending</Typography>;
-      },
-    },
   ];
 };
 
-export const OffersSent = () => {
+export const MySittings = () => {
   const { userContextName } = useContext(UserContext);
 
-  const [offersSent, setOffersSent] = useState([]);
+  const [mySittings, setMySittings] = useState([]);
 
-  const getOffersSent = async () => {
+  const getMySittings = async () => {
     let response = await fetch(
-      `http://127.0.0.1:8000/api/get-offers-sent/${userContextName}`
+      `http://127.0.0.1:8000/api/get-mysittings/${userContextName}`
     );
     let data = await response.json();
-    setOffersSent(data);
+    setMySittings(data);
   };
 
+  console.log(mySittings);
+
   useEffect(() => {
-    getOffersSent();
+    getMySittings();
   }, []);
-
-  const gridRowsArray = [];
-
-  for (let i = 0; i < offersSent.length; i++) {
-    let offerObject = {};
-    offerObject.id = offersSent[i].id;
-    offerObject.sitter = offersSent[i].sitter.name;
-    offerObject.startDate = offersSent[i].sitting.start_date;
-    offerObject.endDate = offersSent[i].sitting.end_date;
-    offerObject.price = offersSent[i].price;
-    offerObject.dog = offersSent[i].sitting.dog.name;
-    gridRowsArray.push(offerObject);
-  }
 
   return (
     <Container maxWidth="md" sx={{ height: "30rem" }}>
       <DataGrid
-        rows={gridRowsArray}
+        // rows={gridRowsArray}
+        rows={[{ id: 1, name: "Schlomo" }]}
         columns={getColumns()}
         headerHeight={60}
         rowHeight={120}

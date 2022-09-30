@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 import os
 from django.conf import settings
 
+from django.db.models import Q
+
 from users.forms import ProfileForm
 
 from sittings.forms import DogForm, SittingForm, OfferForm
@@ -246,7 +248,15 @@ def getOffersSent(request, name):
 
     offers = Offer.objects.filter(sitter__name=name).filter(accepted=False)
 
-    print(offers)
+    serializer = OfferSerializer(offers, many=True)
+
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getMySittings(request, name):
+
+    offers = Offer.objects.filter(Q(sitter__name=name) | Q(sitting__dog__owner__name=name)).filter(accepted=True)
 
     serializer = OfferSerializer(offers, many=True)
 
