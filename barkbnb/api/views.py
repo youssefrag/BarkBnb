@@ -235,6 +235,12 @@ def acceptOffer(request, offerId):
 
     offer = Offer.objects.get(id=offerId)
 
-    print(offer)
-
-    return Response()
+    try:
+        # offer.update(accepted=True)
+        offer.accepted = True
+        print(offer.accepted)
+        offer.save()
+        return Response()
+    except:
+        message = {'detail': 'An error has occured during offer acceptance'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)

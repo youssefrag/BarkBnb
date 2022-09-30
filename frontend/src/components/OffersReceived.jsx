@@ -13,10 +13,6 @@ const handleAccept = (offerId) => {
   });
 };
 
-// const handleAccept = (offerId) => {
-//   console.log(offerId);
-// };
-
 const datagridSx = {
   height: "70rem",
   "& .MuiDataGrid-columnHeaders": {
@@ -106,8 +102,6 @@ export const OffersReceived = () => {
     getOffersReceived();
   }, []);
 
-  console.log(offersReceived);
-
   const gridRowsArray = [];
 
   for (let i = 0; i < offersReceived.length; i++) {
@@ -118,11 +112,8 @@ export const OffersReceived = () => {
     offerObject.endDate = offersReceived[i].sitting.end_date;
     offerObject.price = offersReceived[i].price;
     offerObject.dog = offersReceived[i].sitting.dog.name;
-    console.log(offerObject);
     gridRowsArray.push(offerObject);
   }
-
-  console.log(gridRowsArray);
 
   return (
     <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>
