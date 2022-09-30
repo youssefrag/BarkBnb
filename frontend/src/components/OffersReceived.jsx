@@ -15,7 +15,7 @@ const handleAccept = (offerId) => {
 };
 
 const datagridSx = {
-  height: "70rem",
+  height: "60rem",
   "& .MuiDataGrid-columnHeaders": {
     backgroundColor: "primary.light2",
   },
@@ -121,7 +121,7 @@ export const OffersReceived = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ height: "30rem", marginTop: "10rem" }}>
+    <Container maxWidth="md" sx={{ height: "30rem" }}>
       <DataGrid
         rows={gridRowsArray}
         columns={getColumns()}
@@ -129,9 +129,6 @@ export const OffersReceived = () => {
         rowHeight={120}
         pageSize={5}
         sx={datagridSx}
-        components={{
-          Toolbar: () => <Toolbar></Toolbar>,
-        }}
       ></DataGrid>
       ;
     </Container>
