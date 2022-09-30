@@ -248,8 +248,6 @@ def getOffersSent(request, name):
 
     print(offers)
 
-    return Response()
+    serializer = OfferSerializer(offers, many=True)
 
-    # serializer = OfferSerializer(offers, many=True)
-
-    # return Response(serializer.data)
+    return Response(serializer.data)

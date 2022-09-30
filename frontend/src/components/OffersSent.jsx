@@ -57,10 +57,10 @@ const getColumns = () => {
       minWidth: 50,
     },
     {
-      field: "id",
+      field: "Status",
       minWidth: 50,
       renderCell: (cellValues) => {
-        return <Typography>Status</Typography>;
+        return <Typography sx={{ fontSize: "2rem" }}>Pending</Typography>;
       },
     },
   ];
@@ -77,12 +77,38 @@ export const OffersSent = () => {
     );
     let data = await response.json();
     setOffersSent(data);
-    console.log(offersSent);
   };
+
+  console.log(offersSent);
 
   useEffect(() => {
     getOffersSent();
-  }, [offersSent]);
+  }, []);
 
-  return <div>OffersSent</div>;
+  const gridRowsArray = [];
+
+  for (let i = 0; i < offersSent.length; i++) {
+    let offerObject = {};
+    offerObject.id = offersSent[i].id;
+    offerObject.sitter = offersSent[i].sitter.name;
+    offerObject.startDate = offersSent[i].sitting.start_date;
+    offerObject.endDate = offersSent[i].sitting.end_date;
+    offerObject.price = offersSent[i].price;
+    offerObject.dog = offersSent[i].sitting.dog.name;
+    gridRowsArray.push(offerObject);
+  }
+
+  return (
+    <Container maxWidth="md" sx={{ height: "30rem" }}>
+      <DataGrid
+        rows={gridRowsArray}
+        columns={getColumns()}
+        headerHeight={60}
+        rowHeight={120}
+        pageSize={5}
+        sx={datagridSx}
+      ></DataGrid>
+      ;
+    </Container>
+  );
 };
