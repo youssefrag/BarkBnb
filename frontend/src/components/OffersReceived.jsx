@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
-import { Toolbar, Box, Button, Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import { UserContext } from "../context/userContext";
 import { useEffect } from "react";
-import { fontSize } from "@mui/system";
 
 const handleAccept = (offerId) => {
   fetch(`http://127.0.0.1:8000/api/accept-offer/${offerId}`, {
@@ -62,11 +61,12 @@ const getColumns = () => {
     },
     {
       field: "price",
-      headerName: "price",
+      headerName: "Price",
       minWidth: 50,
     },
     {
       field: "id",
+      headerName: "Accept",
       minWidth: 50,
       renderCell: (cellValues) => {
         return (
@@ -105,7 +105,7 @@ export const OffersReceived = () => {
 
   useEffect(() => {
     getOffersReceived();
-  }, [offersReceived]);
+  }, []);
 
   const gridRowsArray = [];
 

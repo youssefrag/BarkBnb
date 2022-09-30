@@ -240,3 +240,16 @@ def acceptOffer(request, offerId):
     except:
         message = {'detail': 'An error has occured during offer acceptance'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getOffersSent(request, name):
+
+    offers = Offer.objects.filter(sitter__name=name).filter(accepted=False)
+
+    print(offers)
+
+    return Response()
+
+    # serializer = OfferSerializer(offers, many=True)
+
+    # return Response(serializer.data)

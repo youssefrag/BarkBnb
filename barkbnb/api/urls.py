@@ -14,5 +14,6 @@ urlpatterns = [
     path('new-sitting/<str:dogName>', views.createSitting),
     path('make-offer/<str:userEmail>', views.makeOffer),
     path('get-offers-received/<str:name>', views.getOffersReceived),
+    path('get-offers-sent/<str:name>', views.getOffersSent),
     path('accept-offer/<str:offerId>', views.acceptOffer),
 ]
