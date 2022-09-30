@@ -72,17 +72,29 @@ export const MySittings = () => {
     setMySittings(data);
   };
 
-  console.log(mySittings);
-
   useEffect(() => {
     getMySittings();
   }, []);
 
+  const gridRowsArray = [];
+
+  for (let i = 0; i < mySittings.length; i++) {
+    let offerObject = {};
+    // console.log(mySittings[i]);
+    offerObject.id = mySittings[i].id;
+    offerObject.sitter = mySittings[i].sitter.name;
+    offerObject.startDate = mySittings[i].sitting.start_date;
+    offerObject.endDate = mySittings[i].sitting.end_date;
+    offerObject.price = mySittings[i].price;
+    offerObject.dog = mySittings[i].sitting.dog.name;
+    console.log(offerObject);
+    gridRowsArray.push(offerObject);
+  }
+
   return (
     <Container maxWidth="md" sx={{ height: "30rem" }}>
       <DataGrid
-        // rows={gridRowsArray}
-        rows={[{ id: 1, name: "Schlomo" }]}
+        rows={gridRowsArray}
         columns={getColumns()}
         headerHeight={60}
         rowHeight={120}

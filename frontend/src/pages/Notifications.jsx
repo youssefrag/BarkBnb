@@ -32,7 +32,7 @@ export const Notifications = () => {
             Offers Sent
           </Button>
           <Button variant="contained" onClick={() => setPage("mySittings")}>
-            Upcoming Sittings
+            My Sittings
           </Button>
         </Stack>
         <OffersReceived />;
@@ -49,7 +49,7 @@ export const Notifications = () => {
             Offers Sent
           </Button>
           <Button variant="contained" onClick={() => setPage("mySittings")}>
-            Upcoming Sittings
+            My Sittings
           </Button>
         </Stack>
         <OffersSent />;
@@ -66,7 +66,7 @@ export const Notifications = () => {
             Offers Sent
           </Button>
           <Button variant="contained" onClick={() => setPage("mySittings")}>
-            Upcoming Sittings
+            My Sittings
           </Button>
         </Stack>
         <MySittings />;
