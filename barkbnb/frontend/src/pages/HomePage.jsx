@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Typography, Box, Container, Button, Modal } from "@mui/material";
 
 import { createStyles, makeStyles } from "@mui/styles";
+
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -78,6 +80,17 @@ const modalStyle = {
 export const HomePage = () => {
   const classes = useStyles();
 
+  let navigate = useNavigate();
+
+  const howItWorks = useRef(null);
+
+  const scrollToSection = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
   const [openOwner, setOpenOwner] = useState(false);
   const handleOpenOwner = () => setOpenOwner(true);
   const handleCloseOwner = () => setOpenOwner(false);
@@ -100,10 +113,22 @@ export const HomePage = () => {
                 puppy will always be taken care of with BarkBnb!
               </Typography>
               <Box className={classes.heroBtnContainer} marginTop={8}>
-                <Button size="large" variant="contained">
+                <Button
+                  size="large"
+                  variant="contained"
+                  onClick={() => {
+                    navigate("/sittings");
+                  }}
+                >
                   Get started!
                 </Button>
-                <Button className={classes.learnMore} size="large">
+                <Button
+                  className={classes.learnMore}
+                  size="large"
+                  onClick={() => {
+                    scrollToSection(howItWorks);
+                  }}
+                >
                   Learn more
                 </Button>
               </Box>
@@ -117,7 +142,12 @@ export const HomePage = () => {
           </Box>
         </Container>
       </Box>
-      <Box className={classes.howItWorks} marginTop={7} marginBottom={6}>
+      <Box
+        ref={howItWorks}
+        className={classes.howItWorks}
+        marginTop={7}
+        marginBottom={6}
+      >
         <Container className={classes.heroContainer} maxWidth="xl">
           <Typography variant="h2" color="primary">
             How it works
