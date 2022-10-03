@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) =>
       overflow: "hidden",
       display: "grid",
       gridTemplateColumns: "2fr 1fr",
+      [theme.breakpoints.down("lg")]: {
+        height: "60rem",
+      },
     },
     information: {
       padding: "4rem",
@@ -26,6 +29,9 @@ const useStyles = makeStyles((theme) =>
     textfields: {
       display: "flex",
       gap: "10rem",
+      [theme.breakpoints.down("lg")]: {
+        flexDirection: "column",
+      },
     },
     imageContainer: {
       backgroundImage: "url('/images/dalmatian.png')",
@@ -33,6 +39,9 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       width: "auto",
       backgroundPosition: "-12rem",
+      [theme.breakpoints.down("lg")]: {
+        display: "none",
+      },
     },
   })
 );
