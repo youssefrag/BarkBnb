@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       width: "auto",
       backgroundPosition: "-12rem",
+      [theme.breakpoints.down("lg")]: {
+        display: "none",
+      },
     },
   })
 );

@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) =>
       columnGap: "5rem",
       rowGap: "5rem",
       marginBottom: "5rem",
+      [theme.breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr 1fr",
+      },
     },
   })
 );
