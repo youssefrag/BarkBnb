@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) =>
     },
     information: {
       padding: "4rem",
+      [theme.breakpoints.down("lg")]: {
+        display: "block",
+        width: "100%",
+      },
     },
     switchPage: {
       "&:hover": {
@@ -33,6 +37,9 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       width: "auto",
       backgroundPosition: "-12rem",
+      [theme.breakpoints.down("lg")]: {
+        display: "none",
+      },
     },
     form: {
       display: "grid",
