@@ -23,7 +23,7 @@ class Dog(models.Model):
         null=True, blank=True,
         upload_to='dogs/', default="dogs/default-dog.jpeg"
     )
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, max_length=36, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return self.name
@@ -45,7 +45,7 @@ class Sitting(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     created = models.DateTimeField(default=now)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, max_length=36, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return f'{self.dog.size} dog named {self.dog} from {self.start_date} to {self.end_date} in {self.location}'
@@ -57,7 +57,7 @@ class Offer(models.Model):
     price = models.IntegerField()
     accepted = models.BooleanField(default=False)
     created = models.DateTimeField(default=now)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, max_length=36, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return f'{self.sitter} offers {self.price}$ for {self.sitting.id}'
