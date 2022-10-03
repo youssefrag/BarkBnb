@@ -34,12 +34,18 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       width: "auto",
       backgroundPosition: "-20rem",
+      [theme.breakpoints.down("lg")]: {
+        display: "none",
+      },
     },
     form: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
       columnGap: "3.2rem",
       rowGap: "2.4rem",
+      [theme.breakpoints.down("lg")]: {
+        gridTemplateColumns: "1fr",
+      },
     },
     btn: {
       backgroundColor: "#04111c",
