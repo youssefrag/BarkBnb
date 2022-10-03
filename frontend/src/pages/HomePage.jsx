@@ -18,8 +18,12 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "space-between",
       alignItems: "center",
     },
-    heroMainainInfo: {
+    heroMainInfo: {
       width: "50%",
+      [theme.breakpoints.down("lg")]: {
+        width: "100%",
+        paddingLeft: "10rem",
+      },
     },
     heroBtnContainer: {
       display: "flex",
@@ -29,6 +33,11 @@ const useStyles = makeStyles((theme) =>
       "&:hover": {
         backgroundColor: "#14538a",
         border: "2px white",
+      },
+    },
+    howItWorks: {
+      [theme.breakpoints.down("lg")]: {
+        paddingLeft: "10rem",
       },
     },
 
@@ -42,13 +51,13 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "space-between",
       marginBottom: "7rem",
     },
-    // stepNumBox: {
-    //   flex: "1",
-    //   display: "flex",
-    //   justifyContent: "center",
-    // },
     stepText: {
       width: "40rem",
+    },
+    heroImgContainer: {
+      [theme.breakpoints.down("lg")]: {
+        display: "none",
+      },
     },
   })
 );
@@ -82,7 +91,7 @@ export const HomePage = () => {
       <Box className={classes.heroSection} paddingBottom={11}>
         <Container className={classes.heroContainer} maxWidth="xl">
           <Box className={classes.heroBox}>
-            <Box className={classes.heroMainainInfo}>
+            <Box className={classes.heroMainInfo}>
               <Typography variant="h1" marginY={8}>
                 Your puppy will always be taken care of!
               </Typography>
@@ -99,7 +108,7 @@ export const HomePage = () => {
                 </Button>
               </Box>
             </Box>
-            <Box className={classes.heroGallery}>
+            <Box className={classes.heroImgContainer}>
               <img
                 src="https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
                 style={{ height: "40rem" }}
