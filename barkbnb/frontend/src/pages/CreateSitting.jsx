@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) =>
       borderRadius: "9px",
     },
     imageContainer: {
-      backgroundImage: "url('/images/create-sitting.png')",
+      backgroundImage:
+        "url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZG9nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60')",
 
       backgroundSize: "cover",
       width: "auto",
