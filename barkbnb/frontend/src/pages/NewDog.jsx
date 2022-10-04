@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) =>
       padding: "4rem",
     },
     imageContainer: {
-      backgroundImage: "url('/images/new-dog-page.png')",
+      backgroundImage:
+        "url('https://images.unsplash.com/photo-1544378062-0b74cc8b4713?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTM0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60')",
 
       backgroundSize: "cover",
       width: "auto",
-      backgroundPosition: "-20rem",
       [theme.breakpoints.down("lg")]: {
         display: "none",
       },
