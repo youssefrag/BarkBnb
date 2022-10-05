@@ -93,9 +93,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "barkbnb",
-        'USER': 'postgres',
-        'PASSWORD': 'developer2022',
-        'HOST': 'localhost',
+        'USER': 'youssefragab',
+        'PASSWORD': 'Developer2022!',
+        'HOST': 'barkbnb-identifier.cgjwjizkexuy.us-east-1.rds.amazonaws.com',
         'PORT': '5432'
     }
 }
