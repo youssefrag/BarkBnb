@@ -32,11 +32,12 @@ const useStyles = makeStyles((theme) =>
       },
     },
     imageContainer: {
-      backgroundImage: "url('/images/login-signup.png')",
+      backgroundImage:
+        "url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8ZG9nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60')",
 
       backgroundSize: "cover",
       width: "auto",
-      backgroundPosition: "-12rem",
+      // backgroundPosition: "-12rem",
       [theme.breakpoints.down("lg")]: {
         display: "none",
       },

@@ -129,17 +129,6 @@ export const Navbar = () => {
             <Typography variant="h2">Bnb</Typography>
           </Box>
           <Box className={classes.btnContainer}>
-            <Button size="medium" variant="outlined" sx={overrideTheme.navBtn}>
-              How it works
-            </Button>
-            <Button
-              size="medium"
-              variant="outlined"
-              sx={overrideTheme.navBtn}
-              onClick={() => navigate("/sittings")}
-            >
-              Sittings
-            </Button>
             <Button
               size="medium"
               variant="contained"
