@@ -30,7 +30,9 @@ export const ProfileCard = (props) => {
           <Typography gutterBottom variant="h3" component="div">
             {props.name}
           </Typography>
-          {/* <Typography variant="h3">Size: {size}</Typography> */}
+          <Typography gutterBottom variant="body1" component="div">
+            {props.bio}
+          </Typography>
         </CardContent>
       </Box>
     </Card>

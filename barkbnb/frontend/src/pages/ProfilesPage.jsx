@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 
-import { Box } from "@mui/system";
-
-import { makeStyles } from "@mui/styles";
+import { Typography, Button, Container, Box } from "@mui/material";
 
 import { ProfileCard } from "../components/ProfileCard";
 
-const useStyles = makeStyles({
-  root: {
-    marginTop: "100px",
-  },
-  profileCard: {
-    border: "1px solid",
-  },
-});
+import { makeStyles, createStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    profileCards: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      columnGap: "5rem",
+      rowGap: "5rem",
+      [theme.breakpoints.down("lg")]: {
+        gridTemplateColumns: "1fr 1fr",
+      },
+    },
+  })
+);
 
 export const ProfilesPage = () => {
   const classes = useStyles();
@@ -34,15 +39,19 @@ export const ProfilesPage = () => {
 
   renderProfiles = profiles.map((profile) => {
     const imgLink = "http://127.0.0.1:8000" + profile.profile_image;
-    console.log(profile.profile_image);
+    console.log(profile.name);
 
-    return <ProfileCard imageLink={imgLink} />;
+    return <ProfileCard name={profile.name} imageLink={imgLink} />;
   });
 
   return (
-    <div className={classes.root}>
-      ProfilesPage
-      {renderProfiles}
-    </div>
+    <Box marginTop={12}>
+      <Container className={classes.dogsContainer} marginTop={9} maxWidth="lg">
+        <Typography variant="h1" marginBottom={9}>
+          User Profiles
+        </Typography>
+        <Box className={classes.profileCards}>{renderProfiles}</Box>
+      </Container>
+    </Box>
   );
 };

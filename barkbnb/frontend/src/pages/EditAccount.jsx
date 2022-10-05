@@ -81,6 +81,10 @@ export const EditAccount = () => {
 
   const handleSubmit = () => {
     const profileUpdateData = new FormData();
+    if (!profile.profile_image) {
+      alert("Please upload picture");
+      return;
+    }
     profileUpdateData.append("name", profile.name);
     profileUpdateData.append("email", profile.email);
     profileUpdateData.append("bio", profile.bio);
@@ -94,6 +98,7 @@ export const EditAccount = () => {
       method: "POST",
       body: profileUpdateData,
     }).then(() => {
+      console.log("reached here");
       navigate("/profiles");
     });
   };
