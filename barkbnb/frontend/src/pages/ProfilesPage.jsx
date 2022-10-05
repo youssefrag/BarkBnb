@@ -39,7 +39,7 @@ export const ProfilesPage = () => {
 
   renderProfiles = profiles.map((profile) => {
     const imgLink = "http://127.0.0.1:8000" + profile.profile_image;
-    console.log(profile.name);
+    console.log(profile);
 
     return <ProfileCard name={profile.name} imageLink={imgLink} />;
   });
