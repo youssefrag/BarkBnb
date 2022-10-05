@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { makeStyles, createStyles } from "@mui/styles";
 
-import { Typography, TextField, Button, Container, Box } from "@mui/material";
+import { Typography, Button, Container, Box } from "@mui/material";
 
 import { DogCard } from "../components/DogCard";
 

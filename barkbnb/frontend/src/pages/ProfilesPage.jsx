@@ -4,6 +4,8 @@ import { Box } from "@mui/system";
 
 import { makeStyles } from "@mui/styles";
 
+import { ProfileCard } from "../components/ProfileCard";
+
 const useStyles = makeStyles({
   root: {
     marginTop: "100px",
@@ -32,13 +34,9 @@ export const ProfilesPage = () => {
 
   renderProfiles = profiles.map((profile) => {
     const imgLink = "http://127.0.0.1:8000" + profile.profile_image;
+    console.log(profile.profile_image);
 
-    return (
-      <Box>
-        <h1>{profile.name}</h1>
-        <img src={imgLink} style={{ width: "90px" }} />
-      </Box>
-    );
+    return <ProfileCard imageLink={imgLink} />;
   });
 
   return (
