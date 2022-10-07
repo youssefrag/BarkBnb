@@ -1,0 +1,1 @@
+web: gunicorn barkbnb.wsgi --log-file -

@@ -32,6 +32,7 @@ export const DogCard = (props) => {
         boxShadow: "0 1.2rem 3.2rem rgba(0, 0, 0, 0.3)",
       }}
     >
+      {/* <img src={props.imageLink} /> */}
       <CardMedia
         style={{ top: 0 }}
         component="img"

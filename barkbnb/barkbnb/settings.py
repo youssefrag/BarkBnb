@@ -1,6 +1,12 @@
 from pathlib import Path
 import os
+from pickle import FALSE
 from telnetlib import AUTHENTICATION
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,7 +22,7 @@ SECRET_KEY = "django-insecure-tb8=g--4ts&fzc+jy^+vaq-k75yp0!2nw6&)s98t0ybsq%#j1a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'barkbnb-demo.herokuapp.com']
 
 
 # Application definition
@@ -36,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     "corsheaders",
+
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -46,6 +54,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -54,6 +63,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
     'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = "barkbnb.urls"
@@ -94,7 +104,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "barkbnb",
         'USER': 'youssefragab',
-        'PASSWORD': 'Developer2022!',
+        'PASSWORD': env('DB_PASS'),
         'HOST': 'barkbnb-identifier.cgjwjizkexuy.us-east-1.rds.amazonaws.com',
         'PORT': '5432'
     }
@@ -150,3 +160,15 @@ ALLOWED_HOSTS=['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+
+AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+
+AWS_STORAGE_BUCKET_NAME = 'barkbnb-bucket'
+
+if os.getcwd() == '/app':
+    DEBUG = False

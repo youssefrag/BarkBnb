@@ -45,12 +45,10 @@ export const MyDogs = () => {
     setDogs(data);
   };
 
-  console.log(dogs);
-
   let renderDogCards = [];
 
   renderDogCards = dogs.map((dog) => {
-    const imageLink = "http://127.0.0.1:8000" + dog.dog_image;
+    const imageLink = dog.dog_image;
 
     return (
       <DogCard name={dog.name} imageLink={imageLink} sizeVariable={dog.size} />
